@@ -12,9 +12,7 @@
     <script src="js/ktane-utils.js"></script>
     <script src="js/ruleseed.js"></script>
     <style>
-        .hstack table {
-            width: 49.4%;
-        }
+        .hstack table { width: 49.4%; }
     </style>
     <script>
         let Prices = [
@@ -171,33 +169,40 @@
         let FridayPercent = 125;
         let SaturdayPercent = 65;
 
-        function toDollars(intDollars) {
+        function toDollars(intDollars)
+        {
             const stringDollars = intDollars.toString();
             if (intDollars < 100) return "0." + intDollars;
             else return stringDollars.substring(0, stringDollars.length - 2) + "." + stringDollars.substring(stringDollars.length - 2);
         }
 
-        function toRelativePercent(absolutePercent) {
+        function toRelativePercent(absolutePercent)
+        {
             if (absolutePercent > 100) return `${absolutePercent - 100}% дороже`;
             else if (absolutePercent == 50) return "половину их стоимости";
             else return `${100 - absolutePercent}%`
         }
 
-        function setDefaultRules(rng) {
+        function setDefaultRules(rng)
+        {
             setRules(rng);
         }
 
-        function setRules(rng) {
+        function setRules(rng)
+        {
             var prices, pricesLB;
-            if (rng.seed == 1) {
+            if (rng.seed == 1)
+            {
                 prices = Prices.slice(0, 34);
                 pricesLB = PricesLB.slice(0, 12);
             }
-            else {
+            else
+            {
                 prices = rng.shuffleFisherYates(Prices.slice(0)).slice(0, 34);
                 pricesLB = rng.shuffleFisherYates(PricesLB.slice(0)).slice(0, 12);
 
-                for (var [index, item] of prices.entries()) {
+                for (var [index, item] of prices.entries())
+                {
                     var split = item.split(",");
                     var intDollars = parseInt(split[1].replace(".", ""));
                     intDollars += rng.next(-10, 11);
@@ -205,7 +210,8 @@
                     prices[index] = split.join(",");
                 }
 
-                for (var [index, item] of pricesLB.entries()) {
+                for (var [index, item] of pricesLB.entries())
+                {
                     var split = item.split(",");
                     var intDollars = parseInt(split[1].replace(".", ""));
                     intDollars += rng.next(-10, 11);
@@ -238,12 +244,14 @@
             ];
 
             const seededSpans = document.querySelectorAll("span.rule-seeded");
-            for (const [index, seededSpan] of seededSpans.entries()) {
+            for (const [index, seededSpan] of seededSpans.entries())
+            {
                 seededSpan.textContent = seededStrings[index];
             }
 
             const rows = Array.from(document.querySelectorAll(".page-bg-02 tr:nth-child(n+2), .page-bg-03 tr"));
-            for (const [index, itemString] of prices.concat(pricesLB).sort().entries()) {
+            for (const [index, itemString] of prices.concat(pricesLB).sort().entries())
+            {
                 const children = rows[index % rows.length].children;
                 const item = itemString.split(",");
 

@@ -11,7 +11,8 @@
     <script src="js/ktane-utils.js"></script>
     <script src="js/ruleseed.js"></script>
     <script>
-        function setRules(rnd) {
+        function setRules(rnd)
+        {
             // This increases randomness
             for (var i = rnd.next(0, 10); i > 0; i--)
                 rnd.nextDouble();
@@ -154,9 +155,11 @@
                 ],
             };
             var ports = ["parallel", "serial", "PS/2", "DVI-D", "Stereo RCA", "RJ-45"];
-            for (var i = 0; i < ports.length; i++) {
+            for (var i = 0; i < ports.length; i++)
+            {
                 for (var j = 0; j < comparisons['s'].length; j++)
-                    if ('p' in comparisons['s'][j]) {
+                    if ('p' in comparisons['s'][j])
+                    {
                         comparisons['s'][j]['p'].push([`the first numeric digit in the serial number is greater than the number of ${ports[i]} ports`, `the first numeric digit in the serial number is smaller than the number of ${ports[i]} ports`, `the first numeric digit in the serial number is equal to the number of ${ports[i]} ports`]);
                         comparisons['s'][j]['p'].push([`the last numeric digit in the serial number is greater than the number of ${ports[i]} ports`, `the last numeric digit in the serial number is smaller than the number of ${ports[i]} ports`, `the last numeric digit in the serial number is equal to the number of ${ports[i]} ports`]);
                     }
@@ -189,18 +192,21 @@
 
             var cells = Array.from(document.getElementsByClassName('number-row')).map(tr => Array.from(tr.getElementsByClassName('number')));
             var digits = rnd.shuffleFisherYates('123456789'.split(''));
-            for (var column = 0; column < 6; column++) {
+            for (var column = 0; column < 6; column++)
+            {
                 for (var i = 0; i < cells.length; i++)
                     cells[i][column].innerText = digits[i];
                 rnd.shuffleFisherYates(digits);
             }
         }
 
-        function pickRandom(rnd, list) {
+        function pickRandom(rnd, list)
+        {
             return list[rnd.next(0, list.length)];
         }
 
-        function setDefaultRules() {
+        function setDefaultRules()
+        {
             document.getElementById("condition-1").innerText = "последняя цифра серийного номера чётна";
             document.getElementById("condition-2").innerText = "на бомбе имеется хотя бы один параллельный порт";
             document.getElementById("condition-3a").innerText = "негорящих индикаторов больше, чем горящих индикаторов";
@@ -228,8 +234,7 @@
     </style>
 </head>
 <body>
-    <div class="section">
-        <div class="ruleseed-header"></div>
+    <div class="section"><div class="ruleseed-header"></div>
         <div class="page page-bg-01">
             <div class="page-header">
                 <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
@@ -253,7 +258,7 @@
                 </ol>
 
                 <p>
-                    В таблице определите подходящий столбец, исходя из количества крестиков и ноликов, которые уже присутствуют на модуле. Начните с начального ряда и двигайтесь вниз по выбранному столбцу, пока не дойдете до числа, которое соответствует незаполненной клетке на клавиатуре. Если вы прошли через 9 ряд, продолжайте с 1 ряда.
+                   В таблице определите подходящий столбец, исходя из количества крестиков и ноликов, которые уже присутствуют на модуле. Начните с начального ряда и двигайтесь вниз по выбранному столбцу, пока не дойдете до числа, которое соответствует незаполненной клетке на клавиатуре. Если вы прошли через 9 ряд, продолжайте с 1 ряда.
                 </p>
 
                 <p>
@@ -279,43 +284,39 @@
             <div class="page-content">
                 <p><strong>Таблица 1:</strong> размещение знаков в крестиках-ноликах</p>
                 <table class="ttt-table">
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td colspan="2">Крестиков больше</td>
-                            <td colspan="2">Равное количество</td>
-                            <td colspan="2">Ноликов больше</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td colspan="2">Размещение:</td>
-                            <td colspan="2">Размещение:</td>
-                            <td colspan="2">Размещение:</td>
-                        </tr>
-                        <tr>
-                            <th>РЯД</th>
-                            <th>“X”</th>
-                            <th>“O”</th>
-                            <th>“X”</th>
-                            <th>“O”</th>
-                            <th>“X”</th>
-                            <th>“O”</th>
-                        </tr>
-                        <tr class="number-row"><th>1</th><td class="number">9</td><td class="number">3</td><td class="number">3</td><td class="number">9</td><td class="number">8</td><td class="number">1</td></tr>
-                        <tr class="number-row"><th>2</th><td class="number">5</td><td class="number">6</td><td class="number">6</td><td class="number">7</td><td class="number">1</td><td class="number">2</td></tr>
-                        <tr class="number-row"><th>3</th><td class="number">7</td><td class="number">8</td><td class="number">2</td><td class="number">1</td><td class="number">5</td><td class="number">8</td></tr>
-                        <tr class="number-row"><th>4</th><td class="number">4</td><td class="number">5</td><td class="number">7</td><td class="number">8</td><td class="number">9</td><td class="number">6</td></tr>
-                        <tr class="number-row"><th>5</th><td class="number">1</td><td class="number">4</td><td class="number">1</td><td class="number">6</td><td class="number">7</td><td class="number">3</td></tr>
-                        <tr class="number-row"><th>6</th><td class="number">8</td><td class="number">7</td><td class="number">5</td><td class="number">2</td><td class="number">4</td><td class="number">4</td></tr>
-                        <tr class="number-row"><th>7</th><td class="number">6</td><td class="number">1</td><td class="number">8</td><td class="number">4</td><td class="number">3</td><td class="number">9</td></tr>
-                        <tr class="number-row"><th>8</th><td class="number">2</td><td class="number">2</td><td class="number">9</td><td class="number">5</td><td class="number">2</td><td class="number">5</td></tr>
-                        <tr class="number-row"><th>9</th><td class="number">3</td><td class="number">9</td><td class="number">4</td><td class="number">3</td><td class="number">6</td><td class="number">7</td></tr>
-                    </tbody>
-                </table>
+                    <tbody><tr>
+                        <td></td>
+                        <td colspan="2">Крестиков больше</td>
+                        <td colspan="2">Равное количество</td>
+                        <td colspan="2">Ноликов больше</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="2">Размещение:</td>
+                        <td colspan="2">Размещение:</td>
+                        <td colspan="2">Размещение:</td>
+                    </tr>
+                    <tr>
+                        <th>РЯД</th>
+                        <th>“X”</th>
+                        <th>“O”</th>
+                        <th>“X”</th>
+                        <th>“O”</th>
+                        <th>“X”</th>
+                        <th>“O”</th>
+                    </tr>
+                    <tr class="number-row"><th>1</th><td class="number">9</td><td class="number">3</td><td class="number">3</td><td class="number">9</td><td class="number">8</td><td class="number">1</td></tr>
+                    <tr class="number-row"><th>2</th><td class="number">5</td><td class="number">6</td><td class="number">6</td><td class="number">7</td><td class="number">1</td><td class="number">2</td></tr>
+                    <tr class="number-row"><th>3</th><td class="number">7</td><td class="number">8</td><td class="number">2</td><td class="number">1</td><td class="number">5</td><td class="number">8</td></tr>
+                    <tr class="number-row"><th>4</th><td class="number">4</td><td class="number">5</td><td class="number">7</td><td class="number">8</td><td class="number">9</td><td class="number">6</td></tr>
+                    <tr class="number-row"><th>5</th><td class="number">1</td><td class="number">4</td><td class="number">1</td><td class="number">6</td><td class="number">7</td><td class="number">3</td></tr>
+                    <tr class="number-row"><th>6</th><td class="number">8</td><td class="number">7</td><td class="number">5</td><td class="number">2</td><td class="number">4</td><td class="number">4</td></tr>
+                    <tr class="number-row"><th>7</th><td class="number">6</td><td class="number">1</td><td class="number">8</td><td class="number">4</td><td class="number">3</td><td class="number">9</td></tr>
+                    <tr class="number-row"><th>8</th><td class="number">2</td><td class="number">2</td><td class="number">9</td><td class="number">5</td><td class="number">2</td><td class="number">5</td></tr>
+                    <tr class="number-row"><th>9</th><td class="number">3</td><td class="number">9</td><td class="number">4</td><td class="number">3</td><td class="number">6</td><td class="number">7</td></tr>
+                </tbody></table>
             </div>
             <div class="page-footer relative-footer">Стр. 2 из 2</div>
         </div>
-        <div class="ruleseed-header"></div>
-    </div>
-</body>
-</html>
+    <div class="ruleseed-header"></div></div>
+</body></html>

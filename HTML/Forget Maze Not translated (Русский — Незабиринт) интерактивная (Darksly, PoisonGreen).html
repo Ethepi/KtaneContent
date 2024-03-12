@@ -16,16 +16,13 @@
             overflow-y: auto;
             max-height: 45em;
         }
-
         .dark .appendix-table, .appendix-table {
             margin: auto;
             border: 0;
         }
-
         .dark .appendix-cell, .appendix-cell {
             border: 0;
         }
-
         .appendix-cell {
             user-select: none;
             padding: 0;
@@ -34,94 +31,57 @@
             font-weight: bold;
             color: #999;
         }
-
         .dark .appendix-cell {
             color: #FFF;
         }
-
         #red_maze {
             margin: auto;
             border-width: 5px;
             border-color: #770000;
         }
-
-            #red_maze td {
-                user-select: none;
-                color: #444;
-                min-width: 1.3em;
-                height: 1.9em;
-                border: 0;
-            }
-
-        .dark #red_maze td {
-            color: #FFF;
+        #red_maze td {
+            user-select: none;
+            color: #444;
+            min-width: 1.3em;
+            height: 1.9em;
+            border: 0;
         }
-
-        .right {
+        .dark #red_maze td { color: #FFF; }
+        .right{
             border-right: 3px solid #c42525 !important;
         }
-
-        .bottom {
+        .bottom{
             border-bottom: 3px solid #c42525 !important;
         }
-
         .painted {
             color: #000;
         }
-
         td {
             text-align: center;
         }
-
         .border {
-            padding: 0;
+           padding: 0;
         }
-
         .vb {
-            min-width: 3px;
-            width: 3px;
+           min-width: 3px;
+           width: 3px;
         }
 
         .hb {
-            min-height: 3px;
-            height: 3px;
+           min-height: 3px;
+           height: 3px;
         }
 
-        .inactive_color {
-            background-color: #00000000;
-        }
+        .inactive_color { background-color: #00000000; }
+        .primary_color { background-color: #CABAFF99; }
+        .painted_color { background-color: #27F55099; }
+        .seen_color { background-color: #BEDDF799; }
+        .inactive_border_color { background-color: #BBBBBB; }
+        .active_border_color { background-color: #000; }
 
-        .primary_color {
-            background-color: #CABAFF99;
-        }
-
-        .painted_color {
-            background-color: #27F55099;
-        }
-
-        .seen_color {
-            background-color: #BEDDF799;
-        }
-
-        .inactive_border_color {
-            background-color: #BBBBBB;
-        }
-
-        .active_border_color {
-            background-color: #000;
-        }
-
-        .dark .seen_color {
-            background-color: #2B74B18F;
-        }
-
-        .dark .inactive_border_color {
-            background-color: #555;
-        }
-
-        .dark .active_border_color {
-            background-color: #FFF;
-        }
+        .dark .seen_color { background-color: #2B74B18F; }
+        .dark .inactive_border_color { background-color: #555; }
+        .dark .active_border_color { background-color: #FFF; }
 
         .page {
             background-repeat: repeat-y;
@@ -159,59 +119,59 @@
 
         //#region - Table/Grid Management
         function createTable() {
-            var container = document.getElementById('table-container');
-            var tbl = document.createElement('table');
-            tbl.className = "appendix-table";
+          var container = document.getElementById('table-container');
+          var tbl = document.createElement('table');
+          tbl.className = "appendix-table";
 
-            var isBorderRow = true;
-            for (var i = 0; i < TABLE_ROWS * 2 + 1; i++) {
-                //Rows
-                let tr = document.createElement('tr');
+          var isBorderRow = true;
+          for (var i = 0; i < TABLE_ROWS*2 + 1; i++) {
+            //Rows
+            let tr = document.createElement('tr');
 
-                if (isBorderRow) {
-                    //First Border Corner
-                    let borderFirstCornerRow = Math.ceil(i / 2 - 1) + 0.5;
-                    let borderFirstCornerCol = -0.5;
-                    tr.appendChild(createBorder(borderFirstCornerRow, borderFirstCornerCol, "vb hb"));
+            if(isBorderRow){
+                //First Border Corner
+                let borderFirstCornerRow = Math.ceil(i/2 - 1) + 0.5;
+                let borderFirstCornerCol = -0.5;
+                tr.appendChild(createBorder(borderFirstCornerRow, borderFirstCornerCol, "vb hb"));
 
-                } else {
-                    //First Vertical border
-                    let borderFirstVRow = Math.ceil(i / 2 - 1);
-                    let borderFirstVCol = -0.5;
-                    tr.appendChild(createBorder(borderFirstVRow, borderFirstVCol, "vb"));
-                }
-
-                for (var j = 0; j < TABLE_COLS; j++) {
-                    if (isBorderRow) {
-                        //Horizontal Corners
-                        let borderHRow = Math.ceil(i / 2 - 1) + 0.5;
-                        let borderHCol = j;
-                        tr.appendChild(createBorder(borderHRow, borderHCol, "hb"));
-
-                        //Border Corners
-                        let borderCornerRow = Math.ceil(i / 2 - 1) + 0.5;
-                        let borderCornerCol = j + 0.5;
-                        tr.appendChild(createBorder(borderCornerRow, borderCornerCol, "vb hb"));
-                    } else {
-                        //Actual Cells
-                        let borderRow = Math.ceil(i / 2 - 1);
-                        let borderCol = j;
-                        tr.appendChild(createCell(borderRow, borderCol));
-
-                        //Vertical Borders
-                        let borderVRow = Math.ceil(i / 2 - 1);
-                        let borderVCol = j + 0.5;
-                        tr.appendChild(createBorder(borderVRow, borderVCol, "vb"));
-                    }
-                }
-                isBorderRow = !isBorderRow;
-                tbl.appendChild(tr);
+            } else {
+                //First Vertical border
+                let borderFirstVRow = Math.ceil(i/2 - 1);
+                let borderFirstVCol = -0.5;
+                tr.appendChild(createBorder(borderFirstVRow, borderFirstVCol, "vb"));
             }
-            container.appendChild(tbl)
+
+            for (var j = 0; j < TABLE_COLS; j++) {
+                if(isBorderRow) {
+                    //Horizontal Corners
+                    let borderHRow = Math.ceil(i/2 - 1) + 0.5;
+                    let borderHCol = j;
+                    tr.appendChild(createBorder(borderHRow, borderHCol, "hb"));
+
+                    //Border Corners
+                    let borderCornerRow = Math.ceil(i/2 - 1) + 0.5;
+                    let borderCornerCol = j + 0.5;
+                    tr.appendChild(createBorder(borderCornerRow, borderCornerCol, "vb hb"));
+                } else {
+                    //Actual Cells
+                    let borderRow = Math.ceil(i/2 - 1);
+                    let borderCol = j;
+                    tr.appendChild(createCell(borderRow, borderCol));
+
+                    //Vertical Borders
+                    let borderVRow = Math.ceil(i/2 - 1);
+                    let borderVCol = j + 0.5;
+                    tr.appendChild(createBorder(borderVRow, borderVCol, "vb"));
+                }
+            }
+            isBorderRow = !isBorderRow;
+            tbl.appendChild(tr);
+          }
+          container.appendChild(tbl)
         }
 
         function resetTable() {
-            if (!confirm("Вы уверены что вы хотите сбросить сетку?")) return;
+            if(!confirm("Вы уверены что вы хотите сбросить сетку?")) return;
 
             var container = document.getElementById('table-container');
             container.innerHTML = "";
@@ -237,22 +197,22 @@
         }
 
         function createCell(row, col) {
-            let cell = document.createElement('td');
-            cell.row = row;
-            cell.col = col;
-            cell.id = "cell_" + cell.row + "_" + cell.col;
-            cell.className = "appendix-cell";
-            cell.onclick = () => onCellClick(cell);
-            cell.ondblclick = () => toggleCellSeen(cell);
-            cell.addEventListener('contextmenu', function (ev) {
-                ev.preventDefault();
-                toggleCellSolved(cell);
-                return false;
-            }, false);
-            let secondLetter = cell.col >= 26 ? String.fromCharCode(65 + Math.floor(cell.col / 26) - 1) : "";
-            cell.pos = secondLetter + String.fromCharCode(65 + (cell.col % 26)) + "" + (cell.row + 1);
-            cell.innerHTML = cell.pos;
-            return cell;
+                let cell = document.createElement('td');
+                cell.row = row;
+                cell.col = col;
+                cell.id = "cell_" + cell.row + "_" + cell.col;
+                cell.className = "appendix-cell";
+                cell.onclick = () => onCellClick(cell);
+                cell.ondblclick = () => toggleCellSeen(cell);
+                cell.addEventListener('contextmenu', function(ev) {
+                    ev.preventDefault();
+                    toggleCellSolved(cell);
+                    return false;
+                }, false);
+                let secondLetter = cell.col >= 26 ? String.fromCharCode(65 + Math.floor(cell.col / 26) - 1) : "";
+                cell.pos = secondLetter + String.fromCharCode(65 + (cell.col % 26)) + "" + (cell.row + 1);
+                cell.innerHTML = cell.pos;
+                return cell;
         }
 
         function changeGridSize() {
@@ -265,7 +225,7 @@
             createTable();
 
             applyGridState();
-            toggleCell(getCell(selectedCell ? selectedCell.row : null, selectedCell ? selectedCell.col : null), true);
+            toggleCell(getCell(selectedCell? selectedCell.row : null, selectedCell? selectedCell.col : null), true);
         }
 
         function applyGridState() {
@@ -285,22 +245,22 @@
         function setGridSizeLimit(input) {
             input.value = Math.abs(Math.round(input.value));
 
-            if (input.value > GRID_SIZE_LIMIT)
+            if(input.value > GRID_SIZE_LIMIT)
                 input.value = GRID_SIZE_LIMIT;
 
-            if (input.value <= 0)
+            if(input.value <= 0)
                 input.value = 15;
         }
         //#endregion
 
         //#region - Border Management
         function toggleBorder(border) {
-            setBorder(border, !($(border).hasClass(ACTIVE_BORDER_COLOR)));
+          setBorder(border, !($(border).hasClass(ACTIVE_BORDER_COLOR)));
 
-            if ($(border).hasClass(ACTIVE_BORDER_COLOR)) activeBorders.push(border);
-            else activeBorders.splice(activeBorders.findIndex(c => c.id == border.id), 1);
+          if($(border).hasClass(ACTIVE_BORDER_COLOR)) activeBorders.push(border);
+          else activeBorders.splice(activeBorders.findIndex(c => c.id == border.id), 1);
 
-            if (!selectedCell.seen && !selectedCell.painted) toggleCellSeen(selectedCell);
+          if(!selectedCell.seen && !selectedCell.painted) toggleCellSeen(selectedCell);
         }
 
         function getBorder(row, col) {
@@ -312,18 +272,18 @@
 
             removeColorClass(border);
             $(border).addClass(active ? ACTIVE_BORDER_COLOR : INACTIVE_BORDER_COLOR);
-            if (isHorizontal) {
-                let lastCorner = getBorder(border.row, border.col - 0.5);
-                let nextCorner = getBorder(border.row, border.col + 0.5);
+            if(isHorizontal) {
+              let lastCorner = getBorder(border.row, border.col - 0.5);
+              let nextCorner = getBorder(border.row, border.col + 0.5);
 
-                if (lastCorner) {
-                    removeColorClass(lastCorner);
-                    $(lastCorner).addClass(active ? ACTIVE_BORDER_COLOR : INACTIVE_BORDER_COLOR);
-                }
-                if (nextCorner) {
-                    removeColorClass(nextCorner);
-                    $(nextCorner).addClass(active ? ACTIVE_BORDER_COLOR : INACTIVE_BORDER_COLOR);
-                }
+              if(lastCorner) {
+                  removeColorClass(lastCorner);
+                  $(lastCorner).addClass(active ? ACTIVE_BORDER_COLOR : INACTIVE_BORDER_COLOR);
+              }
+              if(nextCorner) {
+                  removeColorClass(nextCorner);
+                  $(nextCorner).addClass(active ? ACTIVE_BORDER_COLOR : INACTIVE_BORDER_COLOR);
+              }
             }
         }
         //#endregion
@@ -336,7 +296,7 @@
 
         //#region - Cell Management
         function toggleCell(cell) {
-            if (!cell) return;
+            if(!cell) return;
             setInactiveColor();
             selectedCell = cell;
             removeColorClass(selectedCell);
@@ -350,9 +310,9 @@
         function applyOnCells(condition, predicate) {
             for (var i = 0; i < TABLE_ROWS; i++) {
                 for (var j = 0; j < TABLE_COLS; j++) {
-                    let cell = getCell(i, j);
-                    if (condition(cell))
-                        predicate(cell);
+                        let cell = getCell(i, j);
+                        if(condition(cell))
+                            predicate(cell);
                 }
             }
         }
@@ -368,7 +328,7 @@
         }
 
         function paintCell(cell, color) {
-            if ($(cell).hasClass(color)) {
+            if($(cell).hasClass(color)) {
                 removeColorClass(cell);
                 $(cell).addClass(PRIMARY_COLOR);
             }
@@ -379,10 +339,10 @@
         }
 
         function setInactiveColor() {
-            if (selectedCell) {
+            if(selectedCell) {
                 removeColorClass(selectedCell);
-                if (selectedCell.painted) $(selectedCell).addClass(PAINTED_COLOR);
-                else if (selectedCell.seen) $(selectedCell).addClass(SEEN_COLOR);
+                if(selectedCell.painted) $(selectedCell).addClass(PAINTED_COLOR);
+                else if(selectedCell.seen) $(selectedCell).addClass(SEEN_COLOR);
                 else $(selectedCell).addClass(INACTIVE_COLOR);
             }
         }
@@ -390,24 +350,24 @@
 
         //#region - Cell States Management
         function toggleCellSolved(cell, undoForced) {
-            if (!cell) return;
+            if(!cell) return;
 
-            if (cell.painted) {
+            if(cell.painted) {
                 solvedCells.splice(solvedCells.findIndex(c => c.id == cell.id), 1);
-                paintCell(cell, cell == selectedCell ? PRIMARY_COLOR : INACTIVE_COLOR);
+                paintCell(cell,cell == selectedCell ? PRIMARY_COLOR : INACTIVE_COLOR);
                 $(cell).removeClass("painted");
                 cell.innerHTML = cell.pos;
                 cell.painted = false;
                 updateSolvedCells();
             } else {
-                if (cell.seen) toggleCellSeen(cell);
+                if(cell.seen) toggleCellSeen(cell);
                 solvedCells.push(cell);
                 paintCell(cell, PAINTED_COLOR);
                 $(cell).addClass("painted");
                 cell.innerHTML = solvedCells.length;
                 cell.painted = true;
             }
-            if (!undoForced) saveAction({ event: { cell, action: "solved" }, action: "keycolor" });
+            if(!undoForced) saveAction({ event: { cell, action: "solved" }, action: "keycolor" });
         }
 
         function updateSolvedCells() {
@@ -417,9 +377,9 @@
         }
 
         function toggleCellSeen(cell, undoForced) {
-            if (!cell) return;
+            if(!cell) return;
 
-            if (cell.seen) {
+            if(cell.seen) {
                 seenCells.splice(seenCells.findIndex(c => c.id == cell.id), 1);
                 paintCell(cell, PRIMARY_COLOR);
                 $(cell).removeClass("painted");
@@ -428,63 +388,63 @@
                 updateSolvedCells();
             } else {
                 seenCells.push(cell);
-                if (cell.painted) toggleCellSolved(cell);
+                if(cell.painted) toggleCellSolved(cell);
                 paintCell(cell, SEEN_COLOR);
                 $(cell).removeClass("painted");
                 cell.innerHTML = seenState ? cell.pos : "";
                 cell.seen = true;
             }
 
-            if (!undoForced) saveAction({ event: { cell, action: "seen" }, action: "keycolor" });
+            if(!undoForced) saveAction({ event: { cell, action: "seen" }, action: "keycolor" });
         }
         //#endregion
 
         //#region - Undo & Redo Management
         function performUndoRedo(e) {
             let isUndo = e.keyCode == 90 && !e.altKey;
-            let isRedo = e.keyCode == 89 || (e.keyCode == 90 && e.altKey);
+                let isRedo = e.keyCode == 89 || (e.keyCode == 90 && e.altKey);
 
-            e.preventDefault();
+                e.preventDefault();
 
-            if ((isUndo && undos.length == 0) || (isRedo && redos.length == 0)) return;
+                if((isUndo && undos.length == 0) || (isRedo && redos.length == 0)) return;
 
-            var undoEvent;
+                var undoEvent;
 
-            if (isUndo) {
-                undoEvent = undos.pop();
-                redos.push(undoEvent);
-            }
+                if(isUndo) {
+                    undoEvent = undos.pop();
+                    redos.push(undoEvent);
+                }
 
-            if (isRedo) {
-                undoEvent = redos.pop();
-                undos.push(undoEvent);
-            }
+                if(isRedo) {
+                    undoEvent = redos.pop();
+                    undos.push(undoEvent);
+                }
 
-            if (undoEvent.action == "keymove") {
-                onKeyDown(new KeyboardEvent("onkeydown", { keyCode: 13 }), true);
-                toggleCell(isUndo ? getCell(undoEvent.event.row, undoEvent.event.col) : getCell(undoEvent.eventRedo.row, undoEvent.eventRedo.col));
+                if(undoEvent.action == "keymove") {
+                    onKeyDown(new KeyboardEvent("onkeydown", { keyCode: 13 }), true);
+                    toggleCell(isUndo ? getCell(undoEvent.event.row, undoEvent.event.col) : getCell(undoEvent.eventRedo.row, undoEvent.eventRedo.col));
 
-            } else if (undoEvent.action == "keydown") {
-                arrowsBehavior = undoEvent.arrowsBehavior;
-                onKeyDown(undoEvent.event, true);
-                setArrowsBehavior();
+                } else if(undoEvent.action == "keydown") {
+                    arrowsBehavior = undoEvent.arrowsBehavior;
+                    onKeyDown(undoEvent.event, true);
+                    setArrowsBehavior();
 
-            } else if (undoEvent.action == "keycolor") {
-                if (undoEvent.event.action == "solved")
-                    toggleCellSolved(getCell(undoEvent.event.cell.row, undoEvent.event.cell.col), true);
-                if (undoEvent.event.action == "seen")
-                    toggleCellSeen(getCell(undoEvent.event.cell.row, undoEvent.event.cell.col), true);
+                } else if(undoEvent.action == "keycolor") {
+                    if(undoEvent.event.action == "solved")
+                        toggleCellSolved(getCell(undoEvent.event.cell.row, undoEvent.event.cell.col), true);
+                    if(undoEvent.event.action == "seen")
+                        toggleCellSeen(getCell(undoEvent.event.cell.row, undoEvent.event.cell.col), true);
 
-            } else if (undoEvent.action == "cellclick") {
-                if (undoEvent.event || !isUndo)
+                }  else if(undoEvent.action == "cellclick") {
+                    if(undoEvent.event || !isUndo)
                     onCellClick(isUndo ? undoEvent.event : undoEvent.eventRedo, true);
-                else onKeyDown(new KeyboardEvent('keydown', { keyCode: 13 }), true);
+                    else onKeyDown(new KeyboardEvent('keydown', { keyCode: 13 }), true);
 
-            }
+                }
         }
 
         function saveAction(event) {
-            if (redos.length != 0) redos = [];
+            if(redos.length != 0) redos = [];
             undos.push(event);
         }
 
@@ -512,15 +472,15 @@
         }
 
         function onCellClick(cell, undoForced) {
-            if (selectedCell == cell) return;
+            if(selectedCell == cell) return;
 
             let tempCurCell = selectedCell;
-            if (!undoForced) saveAction({ event: tempCurCell, eventRedo: cell, action: "cellclick" });
+            if(!undoForced) saveAction({ event:tempCurCell, eventRedo: cell, action: "cellclick" });
 
             toggleCell(cell);
         }
 
-        function onSeenSelectChanged(seenMark) {
+        function onSeenSelectChanged (seenMark) {
             seenState = seenMark.value == "keep";
 
             applyOnCells((cell) => cell.seen, (cell) => {
@@ -534,86 +494,86 @@
                     e.preventDefault();
                     setInactiveColor();
                     selectedCell = null;
-                    if (!undoForced && selectedCell) saveAction({ event: e, action: "keydown" });
+                    if(!undoForced && selectedCell) saveAction({ event: e, action: "keydown" });
                     return;
 
                 case 9: //Tab
                     e.preventDefault();
-                    if (selectedCell)
+                    if(selectedCell)
                         toggleCell(getCell(
                             e.shiftKey ? selectedCell.row >= (TABLE_ROWS - 1) ? 0 : selectedCell.row + 1 : selectedCell.row,
                             e.shiftKey ? selectedCell.col : selectedCell.col >= (TABLE_COLS - 1) ? 0 : selectedCell.col + 1));
                     else toggleCell(getCell(0, 0));
-                    if (!undoForced) saveAction({ event: e, action: "keydown" });
+                    if(!undoForced) saveAction({ event: e, action: "keydown" });
                     return;
 
                 case 38: //Arrow Up
                     e.preventDefault();
-                    if (e.altKey || e.ctrlKey || e.shiftKey || arrowsBehavior == "arrowBorder") { // Border
-                        if (selectedCell) {
+                    if(e.altKey || e.ctrlKey || e.shiftKey || arrowsBehavior == "arrowBorder") { // Border
+                        if(selectedCell) {
                             toggleBorder(getBorder(selectedCell.row - 0.5, selectedCell.col));
-                            if (!undoForced) saveAction({ event: e, arrowsBehavior, action: "keydown" });
+                            if(!undoForced) saveAction({ event: e, arrowsBehavior, action: "keydown" });
                         }
                     } else { // Cell
                         let undoCell = selectedCell;
-                        if (selectedCell) {
+                        if(selectedCell) {
                             toggleCell(getCell(selectedCell.row <= 0 ? (TABLE_ROWS - 1) : selectedCell.row - 1, selectedCell.col));
                         } else toggleCell(getCell(0, 0));
-                        if (!undoForced) saveAction({ event: undoCell, eventRedo: selectedCell, action: "keymove" });
+                        if(!undoForced) saveAction({ event: undoCell, eventRedo: selectedCell, action: "keymove"  });
                     }
                     return;
 
                 case 40: //Arrow Down
                     e.preventDefault();
-                    if (e.altKey || e.ctrlKey || e.shiftKey || arrowsBehavior == "arrowBorder") { //Border
-                        if (selectedCell) {
+                    if(e.altKey || e.ctrlKey || e.shiftKey || arrowsBehavior == "arrowBorder") { //Border
+                        if(selectedCell) {
                             toggleBorder(getBorder(selectedCell.row + 0.5, selectedCell.col));
-                            if (!undoForced) saveAction({ event: e, arrowsBehavior, action: "keydown" });
+                            if(!undoForced) saveAction({ event: e, arrowsBehavior, action: "keydown" });
                         }
                     } else { // Cell
                         let undoCell = selectedCell;
-                        if (selectedCell) {
+                        if(selectedCell) {
                             toggleCell(getCell(selectedCell.row >= (TABLE_ROWS - 1) ? 0 : selectedCell.row + 1, selectedCell.col));
                         } else toggleCell(getCell(0, 0));
-                        if (!undoForced) saveAction({ event: undoCell, eventRedo: selectedCell, action: "keymove" });
+                        if(!undoForced) saveAction({ event: undoCell, eventRedo: selectedCell, action: "keymove"  });
                     }
                     return;
 
                 case 39: //Arrow Right
                     e.preventDefault();
-                    if (e.altKey || e.ctrlKey || e.shiftKey || arrowsBehavior == "arrowBorder") { // Border
-                        if (selectedCell) {
+                    if(e.altKey || e.ctrlKey || e.shiftKey || arrowsBehavior == "arrowBorder") { // Border
+                        if(selectedCell) {
                             toggleBorder(getBorder(selectedCell.row, selectedCell.col + 0.5));
-                            if (!undoForced) saveAction({ event: e, arrowsBehavior, action: "keydown" });
+                            if(!undoForced) saveAction({ event: e, arrowsBehavior, action: "keydown" });
                         }
                     } else { // Cell
                         let undoCell = selectedCell;
-                        if (selectedCell) {
+                        if(selectedCell) {
                             toggleCell(getCell(selectedCell.row, selectedCell.col >= (TABLE_COLS - 1) ? 0 : selectedCell.col + 1));
                         } else toggleCell(getCell(0, 0));
-                        if (!undoForced) saveAction({ event: undoCell, eventRedo: selectedCell, action: "keymove" });
+                        if(!undoForced) saveAction({ event: undoCell, eventRedo: selectedCell, action: "keymove"  });
                     }
                     return;
 
                 case 37: //Arrow Left
                     e.preventDefault();
-                    if (e.altKey || e.ctrlKey || e.shiftKey || arrowsBehavior == "arrowBorder") { // Border
-                        if (selectedCell) {
+                    if(e.altKey || e.ctrlKey || e.shiftKey || arrowsBehavior == "arrowBorder") { // Border
+                        if(selectedCell) {
                             toggleBorder(getBorder(selectedCell.row, selectedCell.col - 0.5));
-                            if (!undoForced) saveAction({ event: e, arrowsBehavior, action: "keydown" });
+                            if(!undoForced) saveAction({ event: e, arrowsBehavior, action: "keydown" });
                         }
                     } else { // Cell
                         let undoCell = selectedCell;
-                        if (selectedCell) {
+                        if(selectedCell) {
                             toggleCell(getCell(selectedCell.row, selectedCell.col <= 0 ? (TABLE_COLS - 1) : selectedCell.col - 1));
                         } else toggleCell(getCell(0, 0));
-                        if (!undoForced) saveAction({ event: undoCell, eventRedo: selectedCell, action: "keymove" });
+                        if(!undoForced) saveAction({ event: undoCell, eventRedo: selectedCell, action: "keymove"  });
                     }
                     return;
 
                 case 90: // Undo (Redo with Shift)
                 case 89: // Redo
-                    if (e.ctrlKey) performUndoRedo(e);
+                    if(e.ctrlKey) performUndoRedo(e);
                     return;
 
                 case 65: // Seen cell
@@ -627,7 +587,7 @@
         }
         //#endregion
 
-        window.onbeforeunload = function () {
+        window.onbeforeunload = function() {
             return true;
         };
     </script>
@@ -651,19 +611,19 @@
                 <p><span style="background: #00DDDD; padding: 5px;">Голубой</span>: Найдите выход из <u>инвертированного лабиринта</u> (Двигаться можно только через стены).</p>
                 <div style="min-height: 20em;"></div>
                 <table id="red_maze">
-                    <tr><td>A1</td><td class="bottom">B1</td><td>C1</td><td class="bottom">D1</td><td class="right">E1</td><td>F1</td><td>G1</td></tr>
-                    <tr><td class="right">A2</td><td class="right">B2</td><td class="bottom">C2</td><td class="right">D2</td><td class="bottom">E2</td><td class="bottom right">F2</td><td>G2</td></tr>
-                    <tr><td class="right">A3</td><td class="bottom">B3</td><td class="bottom">C3</td><td class="bottom right">D3</td><td>E3</td><td>F3</td><td class="bottom">G3</td></tr>
-                    <tr><td class="bottom">A4</td><td class="bottom">B4</td><td class="bottom">C4</td><td class="right">D4</td><td class="right">E4</td><td class="bottom">F4</td><td class="bottom">G4</td></tr>
-                    <tr><td>A5</td><td class="bottom">B5</td><td class="right">C5</td><td class="right">D5</td><td class="right">E5</td><td>F5</td><td>G5</td></tr>
-                    <tr><td class="bottom">A6</td><td class="right">B6</td><td>C6</td><td class="bottom right">D6</td><td class="bottom">E6</td><td class="bottom right">F6</td><td>G6</td></tr>
-                    <tr><td>A7</td><td class="right">B7</td><td class="right">C7</td><td>D7</td><td>E7</td><td>F7</td><td>G7</td></tr>
-                </table>
+                      <tr><td>A1</td><td class="bottom">B1</td><td>C1</td><td class="bottom">D1</td><td class="right">E1</td><td>F1</td><td>G1</td></tr>
+                      <tr><td class="right">A2</td><td class="right">B2</td><td class="bottom">C2</td><td class="right">D2</td><td class="bottom">E2</td><td class="bottom right">F2</td><td>G2</td></tr>
+                      <tr><td class="right">A3</td><td class="bottom">B3</td><td class="bottom">C3</td><td class="bottom right">D3</td><td>E3</td><td>F3</td><td class="bottom">G3</td></tr>
+                      <tr><td class="bottom">A4</td><td class="bottom">B4</td><td class="bottom">C4</td><td class="right">D4</td><td class="right">E4</td><td class="bottom">F4</td><td class="bottom">G4</td></tr>
+                      <tr><td>A5</td><td class="bottom">B5</td><td class="right">C5</td><td class="right">D5</td><td class="right">E5</td><td>F5</td><td>G5</td></tr>
+                      <tr><td class="bottom">A6</td><td class="right">B6</td><td>C6</td><td class="bottom right">D6</td><td class="bottom">E6</td><td class="bottom right">F6</td><td>G6</td></tr>
+                      <tr><td>A7</td><td class="right">B7</td><td class="right">C7</td><td>D7</td><td>E7</td><td>F7</td><td>G7</td></tr>
+                    </table>
             </div>
             <div class="page-footer relative-footer">Стр. 1 из 3</div>
         </div>
     </div>
-    <div class="section">
+      <div class="section">
         <div class="page page-bg-02">
             <div class="page-header">
                 <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>

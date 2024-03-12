@@ -21,7 +21,7 @@
             [3, 1, 8, 3, 4], // None of the above
             [6, 6, 1, 2, 8] // ≥ 2 strikes
         ];
-
+        
         function GenerateOffsetTable(rnd) {
             if (rnd.seed === 1) {
                 return DefaultTable.slice(0);
@@ -51,14 +51,14 @@
         }
 
         var divisibilityRules = [
-            [2, 4, 5, 8],
-            [3, 7, 9, 11]
+            [ 2, 4, 5, 8 ],
+            [ 3, 7, 9, 11 ]
         ];
         var NumNames = [null, "one", "two", "три", "four", "пять", "six", "seven", "eight", "nine", "ten", "eleven"]
 
         function GenerateDivisibilityRules(rnd) {
             if (rnd.seed === 1) {
-                return [3, 5];
+                return [ 3, 5 ];
             }
             var result = [
                 divisibilityRules[0][rnd.next(0, divisibilityRules[0].length)],
@@ -109,12 +109,12 @@
             {
                 Id: "AtLeastXBatteryHoldersPresent",
                 RuleText: a => `На бомбе имеется ${a} и более<br>держателей для элементов питания.`,
-                GenRule: rnd => [rnd.next(2, 4)],
+                GenRule: rnd => [ rnd.next(2, 4) ],
             },
             {
                 Id: "AtLeastXBatteriesPresent",
                 RuleText: a => `На бомбе имеется ${a} и более элементов питания.`,
-                GenRule: rnd => [rnd.next(4, 6)],
+                GenRule: rnd => [ rnd.next(4, 6) ],
             },
             {
                 Id: "XAndYPortsPresent",
@@ -201,7 +201,7 @@
             var newTable = [];
             var indices;
             if (rnd.seed === 1) {
-                indices = [0, 1, 2, 3, 5, 4];
+                indices = [0, 1, 2, 3, 5, 4];   
             } else {
                 indices = [0, 1, 2, 3, 4, 5];
                 rnd.shuffleFisherYates(indices);
@@ -213,7 +213,7 @@
 
             newRuleSet.push(noneRule);
             newTable.push(noneNums);
-
+            
             for (var i = 0; i < 7; i++) {
                 conditions[i].innerHTML = newRuleSet[i];
                 for (var j = 0; j < 5; j++) {

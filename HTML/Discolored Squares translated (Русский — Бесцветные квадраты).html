@@ -38,7 +38,8 @@
 
         function setDefaultRules(rnd) { setRules(rnd); }
 
-        function setRules(rnd) {
+        function setRules(rnd)
+        {
             var skip = rnd.next(0, 6);
             for (var i = 0; i < skip; i++)
                 rnd.nextDouble();
@@ -48,16 +49,17 @@
                 numbers.push(i);
             rnd.shuffleFisherYates(numbers);
             document.getElementById('rules').innerHTML = '<caption>Инструкции</caption>' + four.map(row =>
-                `<tr>${four.map(col => `<td><div class='instr instr-${numbers[col + 4 * row]}'></div>${_instructions[numbers[col + 4 * row]]}</td>`).join('')}</tr>`
+                `<tr>${four.map(col => `<td><div class='instr instr-${numbers[col + 4*row]}'></div>${_instructions[numbers[col + 4*row]]}</td>`).join('')}</tr>`
             ).join('');
 
             numbers = [];
             for (var i = 0; i < 16; i++)
                 numbers.push(i);
             var html = '';
-            for (var stage = 0; stage < 4; stage++) {
+            for (var stage = 0; stage < 4; stage++)
+            {
                 rnd.shuffleFisherYates(numbers);
-                html += `<table class='order'><caption>Этап ${(stage + 1)}</caption>${four.map(row => `<tr>${four.map(col => `<td>${numbers[col + 4 * row] + 1}</td>`).join('')}</tr>`).join('')}</table>`;
+                html += `<table class='order'><caption>Этап ${(stage + 1)}</caption>${four.map(row => `<tr>${four.map(col => `<td>${numbers[col + 4*row] + 1}</td>`).join('')}</tr>`).join('')}</table>`;
             }
             document.getElementById('orders').innerHTML = html;
         }
@@ -82,8 +84,7 @@
                 </ul>
                 <table id="rules"><caption>Инструкции</caption><tbody><tr><td><div class="instr instr-0"></div>NW<br>(с переходом)</td><td><div class="instr instr-2"></div>NE<br>(с переходом)</td><td><div class="instr instr-1"></div>N<br>(с переходом)</td><td><div class="instr instr-14"></div>Rotate<br>180°</td></tr><tr><td><div class="instr instr-10"></div>Отзеркалить <br>относит. \</td><td><div class="instr instr-6"></div>SW<br>(с переходом)</td><td><div class="instr instr-8"></div>Отзеркалить <br>относит. |</td><td><div class="instr instr-15"></div>Stay in<br>place</td></tr><tr><td><div class="instr instr-11"></div>Отзеркалить <br>относит. /</td><td><div class="instr instr-3"></div>E<br>(с переходом)</td><td><div class="instr instr-12"></div>Rotate<br>90° CW</td><td><div class="instr instr-7"></div>W<br>(с переходом)</td></tr><tr><td><div class="instr instr-9"></div>Отзеркалить <br>относит. —</td><td><div class="instr instr-5"></div>S<br>(с переходом)</td><td><div class="instr instr-13"></div>Rotate<br>90° CCW</td><td><div class="instr instr-4"></div>SE<br>(с переходом)</td></tr></tbody></table>
                 <ul>
-                    <li>
-                        Найдите все квадраты соответствующего цвета, <em>который вы запомнили</em>, в порядке, указанном ниже, и для каждого такого квадрата сделайте следующее:
+                    <li>Найдите все квадраты соответствующего цвета, <em>который вы запомнили</em>, в порядке, указанном ниже, и для каждого такого квадрата сделайте следующее:
                         <ul>
                             <li>Измените его позицию, как указано в ячейке таблицы.</li>
                             <li>Если при изменении позиции вы попали на белый квадрат, продолжите изменять позицию.</li>

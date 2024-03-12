@@ -13,12 +13,14 @@
     <script>
         let rules = [];
 
-        function setRules(rnd) {
-            let candidates = ["Синий", "Столбец", "Красный", "Жёлтый", "Ряд", "Зелёный", "Розовый"];
+        function setRules(rnd)
+        {
+            let candidates = [ "Синий", "Столбец", "Красный", "Жёлтый", "Ряд", "Зелёный", "Розовый" ];
             let rows = document.getElementsByClassName('rule-row');
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 15; i++)
+            {
                 if (i === 14)
-                    candidates = ["Столбец", "Ряд", "Столбец", "Ряд", "Столбец", "Ряд", "Столбец"];
+                    candidates = [ "Столбец", "Ряд", "Столбец", "Ряд", "Столбец", "Ряд", "Столбец" ];
                 else
                     rnd.shuffleFisherYates(candidates);
                 let tds = rows[i].getElementsByClassName('rule');
@@ -28,14 +30,16 @@
             setLinks(`#${rnd.seed}`);
         }
 
-        function setDefaultRules() {
+        function setDefaultRules()
+        {
             let list = document.getElementsByClassName('rule');
             for (let i = 0; i < list.length; i++)
                 list[i].innerText = list[i].getAttribute('data-original');
             setLinks('');
         }
 
-        function setLinks(hash) {
+        function setLinks(hash)
+        {
             document.querySelectorAll('.link > a').forEach(lnk => {
                 lnk.setAttribute('href', /^(.*?)(#.*)?$/.exec(lnk.getAttribute('href'))[1] + hash);
             });
@@ -47,24 +51,19 @@
             margin: 1em 0;
             overflow: auto;
         }
-
-            .brother > .component {
-                float: right;
-                margin-left: .5cm;
-            }
-
-                .brother > .component > img {
-                    width: 2.25cm;
-                }
-
-            .brother > .explanation {
-                font-weight: bold;
-            }
-
-            .brother > .link {
-                font-size: 20pt;
-            }
-
+        .brother > .component {
+            float: right;
+            margin-left: .5cm;
+        }
+        .brother > .component > img {
+            width: 2.25cm;
+        }
+        .brother > .explanation {
+            font-weight: bold;
+        }
+        .brother > .link {
+            font-size: 20pt;
+        }
         .colored-squares {
             font-size: 11pt;
         }

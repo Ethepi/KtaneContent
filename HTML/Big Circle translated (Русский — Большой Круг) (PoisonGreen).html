@@ -104,7 +104,7 @@
     </div>
     <script>
 
-        var possibleColorSets = [
+    var possibleColorSets = [
             ["Зелёный", "Оранжевый", "Белый"],
             ["Красный", "Оранжевый", "Зелёный"],
             ["Красный", "Оранжевый", "Синий"],
@@ -453,7 +453,7 @@
             "Последняя цифра серийного номера"
         ];
 
-        var twofactorOperation = ["Отнимите", "Добавьте"];
+        var twofactorOperation = [ "Отнимите", "Добавьте" ];
 
         var twofactorRules = [
             "наибольшую<br>значащую цифру.",
@@ -465,18 +465,20 @@
             "*Если круг вращается по часовой стрелке, то замените порядок нажатий на противоположный."
         ];
 
-        function setDefaultRules(rnd) {
+        function setDefaultRules(rnd)
+        {
             setRules(rnd);
         }
 
-        function setRules(rnd) {
-            var colors = ["Красный", "Оранжевый", "Жёлтый", "Зелёный", "Синий", "Пурпурный", "Белый", "Чёрный"];
+        function setRules(rnd)
+        {
+            var colors = ["Красный","Оранжевый","Жёлтый","Зелёный","Синий","Пурпурный","Белый","Чёрный"];
 
             var rules = rnd.shuffleArray(possibleColorSets).slice(0, 12);
             var indicators = rnd.shuffleArray(["SIG", "BOB", "TRN", "CAR", "CLR", "NSA", "MSA", "SND", "IND", "FRQ", "FRK"]);
             var indicatorscores = [rnd.next(0, 2) == 1 ? "+1 если горит, -1 если не горит." : "-1 если горит, +1 если не горит.",
-            rnd.next(0, 2) == 1 ? "+2 если горит, -2 если не горит." : "-2 если горит, +2 если не горит.",
-            rnd.next(0, 2) == 1 ? "+3 если горит, -3 если не горит." : "-3 если горит, +3 если не горит."];
+                                    rnd.next(0, 2) == 1 ? "+2 если горит, -2 если не горит." : "-2 если горит, +2 если не горит.",
+                                    rnd.next(0, 2) == 1 ? "+3 если горит, -3 если не горит." : "-3 если горит, +3 если не горит."];
 
             document.getElementById('indicator1').innerHTML = "За каждый индикатор<br>" + indicators[0] + ", " + indicators[1] + ", или " + indicators[2] + ":";
             document.getElementById('indicatorscore1').innerHTML = indicatorscores[0];
@@ -496,7 +498,7 @@
 
             var PortRules2 = rnd.shuffleArray(["DVI-D", "Двухканальным-RCA", "PS/2", "RJ-45"]);
             document.getElementById('portplate2').innerHTML = "Имеются плиты с<br>" + PortRules2[0] + ":";
-            document.getElementById('portplatescore2').innerHTML = (rnd.next(0, 2) == 1 ? "+5 за каждый, -4 если совмещён<br>с " : "-5 за каждый, +4 если совмещён<br>с ") + PortRules2[1];
+            document.getElementById('portplatescore2').innerHTML = (rnd.next(0, 2) == 1 ? "+5 за каждый, -4 если совмещён<br>с "  : "-5 за каждый, +4 если совмещён<br>с ") + PortRules2[1];
 
             document.getElementById('rule4').innerHTML = rule4Rules[rnd.next(0, 7)];
             document.getElementById('rule4score').innerHTML = rnd.next(0, 2) == 1 ? "-4 если нечётное, +4 если чётное." : "+4 если нечётное, -4 если чётное.";
@@ -509,7 +511,7 @@
 
             document.getElementById('circleclockwiserule').innerHTML = clockwiserule[rnd.next(0, 2)];
 
-            var serialnumberletters = rnd.shuffleArray(["M", "C", "X", "P", "O", "D", "N", "Y", "J", "7", "W", "G", "1", "9", "8", "4", "F", "2", "Q", "R", "V", "3", "B", "L", "E", "A", "5", "6", "K", "T", "U", "I", "Z", "-0-", "H", "S"]);
+            var serialnumberletters = rnd.shuffleArray(["M","C","X","P","O","D","N","Y","J","7","W","G","1","9","8","4","F","2","Q","R","V","3","B","L","E","A","5","6","K","T","U","I","Z","-0-","H","S"]);
 
             var list = document.getElementById('ruleset').getElementsByClassName('color-group');
             for (var i = 0; i < list.length; i++)
@@ -517,7 +519,7 @@
 
             list = document.getElementById('ruleset').getElementsByClassName('serial-group');
             for (var i = 0; i < list.length; i++)
-                list[i].innerText = [serialnumberletters[(i * 3) + 0], serialnumberletters[(i * 3) + 1], serialnumberletters[(i * 3) + 2]].join(', ');
+                list[i].innerText = [serialnumberletters[(i * 3) + 0],serialnumberletters[(i * 3) + 1],serialnumberletters[(i * 3) + 2]].join(', ');
         }
     </script>
 </body>

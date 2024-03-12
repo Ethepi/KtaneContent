@@ -11,59 +11,59 @@
     <script src="js/ktane-utils.js"></script>
     <script src="js/ruleseed.js"></script>
     <style>
-        table.wire-placement {
-            border: none;
-        }
+        table.wire-placement { border: none; }
     </style>
     <script>
         function setDefaultRules(rnd) { setRules(rnd); }
-        function setRules(rnd) {
-            var coords = ['A1', 'A2', 'A3', 'A4', 'B1', 'C3', 'B3', 'B4', 'C1', 'C2', 'B2', 'C4', 'D1', 'D2', 'D3', 'D4'];
-            var coord = coords[rnd.next(0, coords.length)];
+        function setRules(rnd)
+        {
+            var coords = [ 'A1', 'A2', 'A3', 'A4', 'B1', 'C3', 'B3', 'B4', 'C1', 'C2', 'B2', 'C4', 'D1', 'D2', 'D3', 'D4' ];
+            var coord = coords [ rnd.next(0, coords.length) ];
 
             var spans = document.getElementsByClassName('coordinate');
             for (var i = 0; i < spans.length; i++)
                 spans[i].innerText = coord;
 
-            var colors = ['чёрный', 'синий', 'красный', 'белый', 'жёлтый'];
+            var colors = [ 'чёрный', 'синий', 'красный', 'белый', 'жёлтый' ];
 
             // All of this convoluted code is here to recreate the rules the module had before rule-seed support
             for (var i = 0; i < 6; i++)
                 rnd.next(0, 10);
 
             while (colors.length < 10)
-                colors.push(['чёрный', 'синий', 'красный', 'белый', 'жёлтый'][rnd.next(0, 5)]);
+                colors.push([ 'чёрный', 'синий', 'красный', 'белый', 'жёлтый' ][rnd.next(0, 5)]);
 
             rnd.shuffleFisherYates(colors);
-            colors = [colors[4], colors[0], colors[5], colors[7], colors[3], colors[2], colors[1], colors[8], colors[6], colors[9]];
+            colors = [ colors[4], colors[0], colors[5], colors[7], colors[3], colors[2], colors[1], colors[8], colors[6], colors[9] ];
 
             var columns = [];
-            coords = ['C3', 'A1', 'C4', 'A4', 'B3', 'B2', 'D3', 'B4', 'A3', 'D1', 'A2', 'C1', 'B1', 'C2', 'D4', 'D2'];
+            coords = [ 'C3', 'A1', 'C4', 'A4', 'B3', 'B2', 'D3', 'B4', 'A3', 'D1', 'A2', 'C1', 'B1', 'C2', 'D4', 'D2' ];
             rnd.shuffleFisherYates(coords);
             columns.push(coords.slice(0, 10));
 
-            coords = ['A2', 'A3', 'D3', 'D1', 'C3', 'C4', 'A4', 'C1', 'B3', 'C2', 'B1', 'B2', 'B4', 'D2', 'A1', 'D4'];
+            coords = [ 'A2', 'A3', 'D3', 'D1', 'C3', 'C4', 'A4', 'C1', 'B3', 'C2', 'B1', 'B2', 'B4', 'D2', 'A1', 'D4' ];
             rnd.shuffleFisherYates(coords);
             columns.push(coords.slice(0, 10));
 
-            coords = ['A3', 'B3', 'C2', 'B4', 'B1', 'D2', 'C1', 'A2', 'A4', 'C3', 'D1', 'A1', 'D3', 'C4', 'D4', 'B2'];
+            coords = [ 'A3', 'B3', 'C2', 'B4', 'B1', 'D2', 'C1', 'A2', 'A4', 'C3', 'D1', 'A1', 'D3', 'C4', 'D4', 'B2' ];
             rnd.shuffleFisherYates(coords);
             columns.push(coords.slice(0, 10));
 
-            coords = ['C1', 'A2', 'A3', 'B2', 'D3', 'B1', 'C2', 'C3', 'C4', 'D1', 'B3', 'D2', 'D4', 'A4', 'B4', 'A1'];
+            coords = [ 'C1', 'A2', 'A3', 'B2', 'D3', 'B1', 'C2', 'C3', 'C4', 'D1', 'B3', 'D2', 'D4', 'A4', 'B4', 'A1' ];
             rnd.shuffleFisherYates(coords);
             columns.push(coords.slice(0, 10));
 
-            coords = ['A1', 'A2', 'D4', 'A4', 'C2', 'C3', 'B4', 'C1', 'C4', 'B1', 'D2', 'B2', 'B3', 'A3', 'D1', 'D3'];
+            coords = [ 'A1', 'A2', 'D4', 'A4', 'C2', 'C3', 'B4', 'C1', 'C4', 'B1', 'D2', 'B2', 'B3', 'A3', 'D1', 'D3' ];
             rnd.shuffleFisherYates(coords);
             columns.push(coords.slice(0, 10));
 
             var ths = document.getElementsByClassName('color');
             var tds = document.getElementsByClassName('cell');
-            for (var row = 0; row < 10; row++) {
+            for (var row = 0; row < 10; row++)
+            {
                 ths[row].innerText = colors[row];
                 for (var col = 0; col < 5; col++)
-                    tds[5 * row + col].innerText = columns[col][row];
+                    tds[5*row + col].innerText = columns[col][row];
             }
         }
     </script>

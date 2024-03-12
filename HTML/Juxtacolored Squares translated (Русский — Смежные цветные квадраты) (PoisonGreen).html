@@ -13,34 +13,36 @@
     <script>
         function setDefaultRules(rnd) { setRules(rnd); }
 
-        function setRules(rnd) {
+        function setRules(rnd)
+        {
             let table = document.getElementsByClassName("rule-td");
             let originalColors =
-                [
-                    "Голубой",
-                    "Чёрный",
-                    "Синий",
-                    "Коричневый",
-                    "Каштановый",
-                    "Голубой",
-                    "Лесной",
-                    "Зелёный",
-                    "Серый",
-                    "Нефритовый",
-                    "Пурпурный",
-                    "Лиловый",
-                    "Оранжевый",
-                    "Фиолетовый",
-                    "Красный",
-                    "Жёлтый"
-                ];
+            [
+                "Голубой",
+                "Чёрный",
+                "Синий",
+                "Коричневый",
+                "Каштановый",
+                "Голубой",
+                "Лесной",
+                "Зелёный",
+                "Серый",
+                "Нефритовый",
+                "Пурпурный",
+                "Лиловый",
+                "Оранжевый",
+                "Фиолетовый",
+                "Красный",
+                "Жёлтый"
+            ];
             let colors = originalColors.slice(0);
 
-            for (let row = 0; row < 16; row++) {
+            for (let row = 0; row < 16; row++)
+            {
                 rnd.shuffleFisherYates(colors);
                 let theseColors = colors.slice(0).filter(c => c !== originalColors[row]);
-                table[2 * row].innerText = theseColors.slice(0, 3).join(', ');
-                table[2 * row + 1].innerText = theseColors.slice(3, 6).join(', ');
+                table[2*row].innerText = theseColors.slice(0, 3).join(', ');
+                table[2*row + 1].innerText = theseColors.slice(3, 6).join(', ');
             }
         }
     </script>
@@ -79,10 +81,10 @@
 
                 <table class='color-table centered'>
                     <tr>
-                        <td style='background: #E13838; color: #000'>Красный<br>(R)</td>
-                        <td style='background: #3852E1; color: #fff'>Синий<br>(B)</td>
-                        <td style='background: #E1E138; color: #000'>Жёлтый<br>(Y)</td>
-                        <td style='background: #38E139; color: #000'>Зелёный<br>(G)</td>
+                      <td style='background: #E13838; color: #000'>Красный<br>(R)</td>
+                      <td style='background: #3852E1; color: #fff'>Синий<br>(B)</td>
+                      <td style='background: #E1E138; color: #000'>Жёлтый<br>(Y)</td>
+                      <td style='background: #38E139; color: #000'>Зелёный<br>(G)</td>
                     </tr>
                     <tr>
                         <td style='background: #E728F1; color: #000'>Пурпурный<br>(M)</td>

@@ -59,11 +59,7 @@
             float: left;
             width: 50%;
         }
-
-        table.black td, table.black th {
-            color: black;
-        }
-
+        table.black td, table.black th { color: black; }
         .dark img:not(.diagram) {
             filter: invert(90%);
         }
@@ -103,7 +99,8 @@
         }
     </style>
     <script>
-        function update() {
+        function update()
+        {
             var sin = parseInt(document.getElementById("sin").value) ? parseInt(document.getElementById("sin").value) : 0;
             var cos = parseInt(document.getElementById("cos").value) ? parseInt(document.getElementById("cos").value) : 0;
             var acos = parseFloat(document.getElementById("acos").value) ? parseFloat(document.getElementById("acos").value) : 0;
@@ -128,7 +125,8 @@
 
         var defaultRules = null;
 
-        function getDefaultRules() {
+        function getDefaultRules()
+        {
             if (defaultRules !== null)
                 return;
 
@@ -137,24 +135,28 @@
                 defaultRules[`rule-2-${instruction}`] = document.getElementById(`rule-2-${instruction}`).innerText;
         }
 
-        function setDefaultRules() {
+        function setDefaultRules()
+        {
             getDefaultRules();
             document.getElementById(`rule-extra-1`).innerText = "";
             for (var instruction = 1; instruction <= 10; instruction++)
                 document.getElementById(`rule-2-${instruction}`).innerText = defaultRules[`rule-2-${instruction}`];
         }
 
-        function setRules(rnd) {
+        function setRules(rnd)
+        {
             getDefaultRules();
             document.getElementById(`rule-extra-1`).innerText = " слева направо. Используя обе таблицы, не записывайте дробную часть, а такаже деления и взятие остатка от деления на 0";
             var action = ['Прибавьте', 'Вычтите', 'Умножьте на', 'Разделите на', "Возьмите остаток от деления на"];
             var actionShort = ['+', '-', '*', '/', "%"];
 
-            for (var instruction = 0; instruction < 20; instruction++) {
+            for (var instruction = 0; instruction < 20; instruction++)
+            {
                 var span = document.getElementById(`rule-1-${instruction + 1}`);
                 var rule = { type: rnd.nextMax(10), parameter: rnd.nextMax(5) };
 
-                switch (rule.type) {
+                switch (rule.type)
+                {
                     case 0: span.innerText = `${actionShort[rule.parameter]}0`; break;
                     case 1: span.innerText = `${actionShort[rule.parameter]}1`; break;
                     case 2: span.innerText = `${actionShort[rule.parameter]}2`; break;
@@ -168,11 +170,13 @@
                 }
             }
 
-            for (var instruction = 0; instruction < 10; instruction++) {
+            for (var instruction = 0; instruction < 10; instruction++)
+            {
                 var span = document.getElementById(`rule-2-${instruction + 1}`);
                 var rule = { type: rnd.nextMax(21), parameter: rnd.nextMax(5) };
 
-                switch (rule.type) {
+                switch (rule.type)
+                {
                     case 0: span.innerText = `${action[rule.parameter]} # батареек.`; break;
                     case 1: span.innerText = `${action[rule.parameter]} # AA батареек.`; break;
                     case 2: span.innerText = `${action[rule.parameter]} # D батареек.`; break;

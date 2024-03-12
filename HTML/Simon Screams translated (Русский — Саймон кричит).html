@@ -13,7 +13,7 @@
     <script src="js/ruleseed.js"></script>
     <script>
         var _rules = [
-            { prob: 50, name: "все кнопки загорелись хотя бы раз" },
+            { prob:  50, name: "все кнопки загорелись хотя бы раз" },
             { prob: 120, name: "три кнопки, находящиеся порознь, загорелись в порядке обхода по часовой стрелке" },
             { prob: 220, name: "загорелась кнопка, затем соседняя, а потом снова первая" },
             { prob: 121, name: "три соседние кнопки загорелись в порядке обхода против часовой стрелки" },
@@ -59,7 +59,8 @@
 
         function setDefaultRules(rnd) { setRules(rnd); }
 
-        function setRules(rnd) {
+        function setRules(rnd)
+        {
             var steps = rnd.next(0, 25);
             for (var i = 0; i < steps; i++)
                 rnd.nextDouble();
@@ -69,9 +70,11 @@
             var ths = document.getElementsByClassName('row-rule');
             rules = rules.slice(0, ths.length);
             rules.sort((a, b) => a.prob < b.prob ? -1 : a.prob > b.prob ? 1 : 0);
-            for (var i = 0; i < ths.length; i++) {
+            for (var i = 0; i < ths.length; i++)
+            {
                 var name = rules[i].name;
-                if (typeof rules[i].name === 'function') {
+                if (typeof rules[i].name === 'function')
+                {
                     var colors = 'оранжевого,жёлтого,красного,зелёного,синего,фиолетового'.split(',');
                     rnd.shuffleFisherYates(colors);
                     name = rules[i].name(colors);
@@ -103,7 +106,8 @@
                 "КФЖОЗС",
                 "СКФЗЖО"];
 
-            if (rnd.seed != 1) {
+            if (rnd.seed != 1)
+            {
                 sts[0] = rnd.next(0, 3);
                 sts[1] = rnd.next(sts[0] + 1, 4);
                 sts[2] = rnd.next(sts[1] + 1, 5);
@@ -155,8 +159,7 @@
     </script>
 </head>
 <body>
-    <div class="section">
-        <div class="ruleseed-header"></div>
+    <div class="section"><div class="ruleseed-header"></div>
         <div class="page page-bg-01">
             <div class="page-header">
                 <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
@@ -166,7 +169,7 @@
                 <img src="img/Component/Simon Screams.svg" class="diagram">
                 <h2>О модуле «Саймон кричит»</h2>
                 <p class="flavour-text">
-                    Он зол! Он в гневе! Он разъярён! Он вне себя!
+                Он зол! Он в гневе! Он разъярён! Он вне себя!
                 </p>
                 <ul>
                     <li>
@@ -316,7 +319,5 @@
             </div>
             <div class="page-footer relative-footer">Стр. 1 из 1</div>
         </div>
-        <div class="ruleseed-header"></div>
-    </div>
-</body>
-</html>
+    <div class="ruleseed-header"></div></div>
+</body></html>
