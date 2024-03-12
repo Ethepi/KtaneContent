@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1">
@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <script src="js/ktane-utils.js"></script>
-    
+
     <style>
         .dark .spacer, .spacer {
             margin-left: 20px;
@@ -23,9 +23,9 @@
             border: none;
         }
 
-		table.button-sequences td:first-child, table.button-sequences td.spacer + td {
-			white-space: nowrap;
-		}
+            table.button-sequences td:first-child, table.button-sequences td.spacer + td {
+                white-space: nowrap;
+            }
     </style>
 </head>
 <body>
@@ -48,21 +48,121 @@
                     <li>Светодиоды рядом с каждой кнопкой загорятся зелёным, если кнопка была нажата или удержана успешно, или если её не нажимали, и панель была успешно отправлена. Они загорятся оранжевым, если с соответствующей кнопкой ещё не производилось никаких действий, и загорятся красным, если соответствующая кнопка вызвала ошибку.</li>
                 </ul>
                 <table class="button-sequences">
-                    <tbody><tr><th>Появление красной кнопки</th><th>Нажмите, если на кнопке написано...*</th><th>Нажмите, если фигура кнопки...</th>  <td class="spacer"></td>  <th>Появление жёлтой кнопки</th><th>Нажмите, если на кнопке написано...*</th><th>Нажмите, если фигура кнопки...</th>
-                    </tr><tr><td>Первое или Шестое</td>     <td>Abort</td>    <td>Квадрат</td>       <td class="spacer"></td>  <td>Первое или Шестое</td>     <td>Detonate</td> <td>Круг</td>
-                    </tr><tr><td>Второе или Седьмое</td>    <td>Detonate</td> <td>Шестиугольник</td> <td class="spacer"></td>  <td>Второе или Седьмое</td>    <td>Hold</td>     <td>Шестиугольник</td>
-                    </tr><tr><td>Третье или Восьмое</td>    <td>Hold</td>     <td>Круг</td>          <td class="spacer"></td>  <td>Третье или Восьмое</td>    <td>Abort</td>    <td>Квадрат</td>
-                    </tr><tr><td>Четвертое или Девятое</td> <td>Abort</td>    <td>Круг</td>          <td class="spacer"></td>  <td>Четвертое или Девятое</td> <td>Press</td>    <td>Круг</td>
-                    </tr><tr><td>Пятое или Десятое</td>     <td>Press</td>    <td>Квадрат</td>       <td class="spacer"></td>  <td>Пятое или Десятое</td>     <td>Hold</td>     <td>Шестиугольник</td>
-                </tr></tbody></table>
+                    <tbody>
+                        <tr>
+                            <th>Появление красной кнопки</th>
+                            <th>Нажмите, если на кнопке написано...*</th>
+                            <th>Нажмите, если фигура кнопки...</th>
+                            <td class="spacer"></td>
+                            <th>Появление жёлтой кнопки</th>
+                            <th>Нажмите, если на кнопке написано...*</th>
+                            <th>Нажмите, если фигура кнопки...</th>
+                        </tr>
+                        <tr>
+                            <td>Первое или Шестое</td>
+                            <td>Abort</td>
+                            <td>Квадрат</td>
+                            <td class="spacer"></td>
+                            <td>Первое или Шестое</td>
+                            <td>Detonate</td>
+                            <td>Круг</td>
+                        </tr>
+                        <tr>
+                            <td>Второе или Седьмое</td>
+                            <td>Detonate</td>
+                            <td>Шестиугольник</td>
+                            <td class="spacer"></td>
+                            <td>Второе или Седьмое</td>
+                            <td>Hold</td>
+                            <td>Шестиугольник</td>
+                        </tr>
+                        <tr>
+                            <td>Третье или Восьмое</td>
+                            <td>Hold</td>
+                            <td>Круг</td>
+                            <td class="spacer"></td>
+                            <td>Третье или Восьмое</td>
+                            <td>Abort</td>
+                            <td>Квадрат</td>
+                        </tr>
+                        <tr>
+                            <td>Четвертое или Девятое</td>
+                            <td>Abort</td>
+                            <td>Круг</td>
+                            <td class="spacer"></td>
+                            <td>Четвертое или Девятое</td>
+                            <td>Press</td>
+                            <td>Круг</td>
+                        </tr>
+                        <tr>
+                            <td>Пятое или Десятое</td>
+                            <td>Press</td>
+                            <td>Квадрат</td>
+                            <td class="spacer"></td>
+                            <td>Пятое или Десятое</td>
+                            <td>Hold</td>
+                            <td>Шестиугольник</td>
+                        </tr>
+                    </tbody>
+                </table>
                 <table class="button-sequences">
-                    <tbody><tr><th>Появление cиней кнопки</th><th>Нажмите, если на кнопке написано...*</th><th>Нажмите, если фигура кнопки...</th>  <td class="spacer"></td>  <th>Появление белой кнопки</th><th>Нажмите, если на кнопке написано...*</th><th>Нажмите, если фигура кнопки...</th>
-                    </tr><tr><td>Первое или Шестое</td>     <td>Hold</td>     <td>Круг</td>          <td class="spacer"></td>  <td>Первое или Шестое</td>     <td>Hold</td>     <td>Шестиугольник</td>
-                    </tr><tr><td>Второе или Седьмое</td>    <td>Abort</td>    <td>Квадрат</td>       <td class="spacer"></td>  <td>Второе или Седьмое</td>    <td>Detonate</td> <td>Квадрат</td>
-                    </tr><tr><td>Третье или Восьмое</td>    <td>Detonate</td> <td>Шестиугольник</td> <td class="spacer"></td>  <td>Третье или Восьмое</td>    <td>Press</td>    <td>Шестиугольник</td>
-                    </tr><tr><td>Четвертое или Девятое</td> <td>Press</td>    <td>Квадрат</td>       <td class="spacer"></td>  <td>Четвертое или Девятое</td> <td>Abort</td>    <td>Круг</td>
-                    </tr><tr><td>Пятое или Десятое</td>     <td>Press</td>    <td>Шестиугольник</td> <td class="spacer"></td>  <td>Пятое или Десятое</td>     <td>Detonate</td> <td>Квадрат</td>
-                </tr></tbody></table>
+                    <tbody>
+                        <tr>
+                            <th>Появление cиней кнопки</th>
+                            <th>Нажмите, если на кнопке написано...*</th>
+                            <th>Нажмите, если фигура кнопки...</th>
+                            <td class="spacer"></td>
+                            <th>Появление белой кнопки</th>
+                            <th>Нажмите, если на кнопке написано...*</th>
+                            <th>Нажмите, если фигура кнопки...</th>
+                        </tr>
+                        <tr>
+                            <td>Первое или Шестое</td>
+                            <td>Hold</td>
+                            <td>Круг</td>
+                            <td class="spacer"></td>
+                            <td>Первое или Шестое</td>
+                            <td>Hold</td>
+                            <td>Шестиугольник</td>
+                        </tr>
+                        <tr>
+                            <td>Второе или Седьмое</td>
+                            <td>Abort</td>
+                            <td>Квадрат</td>
+                            <td class="spacer"></td>
+                            <td>Второе или Седьмое</td>
+                            <td>Detonate</td>
+                            <td>Квадрат</td>
+                        </tr>
+                        <tr>
+                            <td>Третье или Восьмое</td>
+                            <td>Detonate</td>
+                            <td>Шестиугольник</td>
+                            <td class="spacer"></td>
+                            <td>Третье или Восьмое</td>
+                            <td>Press</td>
+                            <td>Шестиугольник</td>
+                        </tr>
+                        <tr>
+                            <td>Четвертое или Девятое</td>
+                            <td>Press</td>
+                            <td>Квадрат</td>
+                            <td class="spacer"></td>
+                            <td>Четвертое или Девятое</td>
+                            <td>Abort</td>
+                            <td>Круг</td>
+                        </tr>
+                        <tr>
+                            <td>Пятое или Десятое</td>
+                            <td>Press</td>
+                            <td>Шестиугольник</td>
+                            <td class="spacer"></td>
+                            <td>Пятое или Десятое</td>
+                            <td>Detonate</td>
+                            <td>Квадрат</td>
+                        </tr>
+                    </tbody>
+                </table>
                 <p>* В связи с урезанием бюджета, кнопки будут показывать лишь первую букву каждого слова.</p>
             </div>
             <div class="page-footer relative-footer">Стр. 1 из 2</div>
@@ -86,4 +186,5 @@
             <div class="page-footer relative-footer">Стр. 2 из 2</div>
         </div>
     </div>
-</body></html>
+</body>
+</html>

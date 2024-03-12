@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1">
@@ -11,32 +11,30 @@
     <script src="js/ktane-utils.js"></script>
     <script src="js/ruleseed.js"></script>
     <script>
-    function setRules(rnd)
-    {
-        var yes = rnd.next(0, 2, true);
-        var no = rnd.next(0, 2, true);
-        switch (yes) {
-            case 0:
-                document.getElementsByClassName("Yes")[0].innerText = "no";
-                break;
-            default:
-                document.getElementsByClassName("Yes")[0].innerText = "yes";
+        function setRules(rnd) {
+            var yes = rnd.next(0, 2, true);
+            var no = rnd.next(0, 2, true);
+            switch (yes) {
+                case 0:
+                    document.getElementsByClassName("Yes")[0].innerText = "no";
+                    break;
+                default:
+                    document.getElementsByClassName("Yes")[0].innerText = "yes";
+            }
+            switch (no) {
+                case 0:
+                    document.getElementsByClassName("No")[0].innerText = "yes";
+                    break;
+                default:
+                    document.getElementsByClassName("No")[0].innerText = "no";
+            }
         }
-        switch (no) {
-            case 0:
-                document.getElementsByClassName("No")[0].innerText = "yes";
-                break;
-            default:
-                document.getElementsByClassName("No")[0].innerText = "no";
-        }
-    }
 
-    function setDefaultRules()
-    {
-        var list = document.getElementsByClassName('rule');
-        for (var i = 0; i < list.length; i++)
-            list[i].innerText = list[i].getAttribute('data-original');
-    }
+        function setDefaultRules() {
+            var list = document.getElementsByClassName('rule');
+            for (var i = 0; i < list.length; i++)
+                list[i].innerText = list[i].getAttribute('data-original');
+        }
     </script>
 </head>
 <body>
@@ -57,7 +55,7 @@
                     <li>Если нижнее число является цифровым корнем трёх цифр выше, тогда нажмите "<span class='rule Yes' data-original='yes'>YES</span>". Иначе, нажмите "<span class='rule No' data-original='no'>NO</span>".</li>
                 </ul>
             </div>
-           <div class="page-footer relative-footer">Стр. 1 из 1</div>
+            <div class="page-footer relative-footer">Стр. 1 из 1</div>
         </div>
     </div>
 </body>

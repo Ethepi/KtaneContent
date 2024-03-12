@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1">
@@ -16,8 +16,7 @@
     <script>
         var defaultRules = null;
 
-        function makeChessboard (labels)
-        {
+        function makeChessboard(labels) {
             const svg = $("#chessboard");
             svg.html("");
             svg.append(MakeSvgElem("rect", { class: "border", "x": -5, "y": -5, "width": 610, "height": 610 }));
@@ -31,32 +30,29 @@
             }
             for (let i = 0; i < 6; i++) {
                 const rankCoords = { x: -50, y: 550 - 100 * i };
-                const fileCoords = { x: 50 + 100 * i , y: 670 };
-                svg.append(MakeSvgElem( "text", { "x": rankCoords.x, "y": rankCoords.y, "class": "coordinate" }, labels.ranks[i] ));
-                svg.append(MakeSvgElem( "text", { "x": fileCoords.x, "y": fileCoords.y, "class": "coordinate" }, labels.files[i] ));
+                const fileCoords = { x: 50 + 100 * i, y: 670 };
+                svg.append(MakeSvgElem("text", { "x": rankCoords.x, "y": rankCoords.y, "class": "coordinate" }, labels.ranks[i]));
+                svg.append(MakeSvgElem("text", { "x": fileCoords.x, "y": fileCoords.y, "class": "coordinate" }, labels.files[i]));
             }
         }
 
-        function getDefaultRules ()
-        {
+        function getDefaultRules() {
             if (defaultRules !== null) return;
             defaultRules = {};
             for (let rule = 1; rule <= 6; rule++) defaultRules[rule] = document.getElementById(`rule${rule}`).innerHTML;
         }
 
-        function setDefaultRules ()
-        {
+        function setDefaultRules() {
             getDefaultRules();
-            for(let i = 1; i <= 6; i++){
+            for (let i = 1; i <= 6; i++) {
                 const span = document.getElementById(`rule${i}`);
                 span.innerHTML = defaultRules[i].replace("{i}", i).replace("{j}", 5);
             }
-            const defaultLabels = { ranks: ['1','2','3','4','5','6'], files: ['a','b','c','d','e','f'] };
+            const defaultLabels = { ranks: ['1', '2', '3', '4', '5', '6'], files: ['a', 'b', 'c', 'd', 'e', 'f'] };
             makeChessboard(defaultLabels);
         }
 
-        function setRules (rnd)
-        {
+        function setRules(rnd) {
             getDefaultRules();
             const order = [1, 2, 3, 4, 5, 6];
             rnd.shuffleFisherYates(order);
@@ -69,15 +65,15 @@
             for (let i = 0; i < 6; i++) {
                 const span = document.getElementById(`rule${i + 1}`);
                 let inner = defaultRules[order[i]].replace("{i}", i + 1);
-                switch(order[i]) {
+                switch (order[i]) {
                     case 1: inner = inner.replace("{j}", ind + 1); break;
                     case 2: inner = inner.replace("нечётна", invertSerial ? "даже" : "нечётна"); break;
                     case 5: inner = inner.replace("белого", invertField ? "черный" : "белого"); break;
                 }
                 span.innerHTML = inner;
             }
-            const letters = ['a','b','c','d','e','f'];
-            const numbers = ['1','2','3','4','5','6'];
+            const letters = ['a', 'b', 'c', 'd', 'e', 'f'];
+            const numbers = ['1', '2', '3', '4', '5', '6'];
             if (invertX) letters.reverse();
             if (invertY) numbers.reverse();
             const setLabels = { ranks: [], files: [] };
@@ -117,41 +113,41 @@
                 <table class="chess">
                     <tbody>
                         <tr>
-                            <td id = "rule1">
+                            <td id="rule1">
                                 <h4>Позиция #{i}: Монархия против теократии</h4>
                                 <p>Занята королем, если Позиция #{j} занята ферзём.</p>
                                 <p>Иначе это поле занимает слон.</p>
                             </td>
                         </tr>
                         <tr>
-                            <td id = "rule2">
+                            <td id="rule2">
                                 <h4>Позиция #{i}: Командир армии</h4>
                                 <p>Занята ладьёй, если последняя цифра серийного номера нечётна.</p>
                                 <p>Иначе это поле занимает конь.</p>
                             </td>
                         </tr>
                         <tr>
-                            <td id = "rule3">
+                            <td id="rule3">
                                 <h4>Позиция #{i}: Дело регентов</h4>
                                 <p>Занята ферзём, если на доске менее двух ладей.</p>
                                 <p>Иначе это поле занимает король.</p>
                             </td>
                         </tr>
                         <tr>
-                            <td id = "rule4">
+                            <td id="rule4">
                                 <h4>Позиция #{i}: Железная башня</h4>
                                 <p>Всегда занята ладьёй.</p>
                             </td>
                         </tr>
                         <tr>
-                            <td id = "rule5">
+                            <td id="rule5">
                                 <h4>Позиция #{i}: Битва добра со злом</h4>
                                 <p>Занята ферзём, если поле белого цвета.</p>
                                 <p>Иначе это поле занимает ладья.</p>
                             </td>
                         </tr>
                         <tr>
-                            <td id = "rule6">
+                            <td id="rule6">
                                 <h4>Позиция #{i}: Скипетр, меч и жезл</h4>
                                 <p>Занята ферзём, если на доске отсутствуют ферзи.</p>
                                 <p>Иначе это поле занято конём, если на доске отсутствуют кони.</p>

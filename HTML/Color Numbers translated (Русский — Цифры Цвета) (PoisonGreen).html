@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1">
@@ -15,25 +15,23 @@
             margin-left: auto;
             margin-right: auto;
         }
+
         td {
             text-align: center;
         }
     </style>
     <script>
-        function setRules(rnd)
-        {
+        function setRules(rnd) {
             let numbers = [];
             let x = [...Array(4).keys()];
             rnd.shuffleFisherYates(x);
-            for (let i = 0; i < 4; i++)
-            {
-                numbers.push(x[i]+1);
+            for (let i = 0; i < 4; i++) {
+                numbers.push(x[i] + 1);
             }
             showRules(numbers);
         }
 
-        function setDefaultRules()
-        {
+        function setDefaultRules() {
             let numbers = [];
             numbers.push(1);
             numbers.push(2);
@@ -42,8 +40,7 @@
             showRules(numbers);
         }
 
-        function showRules(nums)
-        {
+        function showRules(nums) {
             document.getElementById('rules1').innerText = `${nums[0]}`;
             document.getElementById('rules2').innerText = `${nums[1]}`;
             document.getElementById('rules3').innerText = `${nums[2]}`;

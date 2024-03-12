@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1">
     <title>Праздничное фортепиано — Keep Talking and Nobody Explodes Module</title>
     <link rel="stylesheet" type="text/css" href="css/font.css">
+    <link rel="stylesheet" type="text/css" href="css/font-cyrillic.css">
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <script src="js/ktane-utils.js"></script>
@@ -44,20 +45,27 @@
             font-family: 'OpusChordsSansStd';
             word-spacing: 0.3em;
         }
+
         img.music {
             width: 10px;
             margin-bottom: 5px;
         }
-        img.music.big {
-            width: 20px;
+
+            img.music.big {
+                width: 20px;
+            }
+
+            img.music.small {
+                width: 8px;
+            }
+
+            img.music.above {
+                margin-bottom: 15px;
+            }
+
+        .dark img.music {
+            filter: invert(85%);
         }
-        img.music.small {
-            width: 8px;
-        }
-        img.music.above {
-            margin-bottom: 15px;
-        }
-        .dark img.music { filter: invert(85%); }
 
         .no-requirement {
             font-style: italic;

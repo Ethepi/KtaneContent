@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <meta charset="utf-8">    
+    <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1">
     <title>Лампочка — Keep Talking and Nobody Explodes Module</title>
     <link rel="stylesheet" type="text/css" href="css/font.css">
@@ -78,18 +78,15 @@
             ]
         ];
 
-        function deepCopy(arr)
-        {
+        function deepCopy(arr) {
             return Array.isArray(arr) ? arr.map(x => deepCopy(x)) : arr;
         }
 
-        function getRandom(rnd, arr, extra)
-        {
+        function getRandom(rnd, arr, extra) {
             if (extra && rnd.next(0, 2))
                 return [extra === 'now' ? "the light is now on" : "the light was still on after step 1", extra];
             var ix = rnd.next(0, arr.length);
-            if (Array.isArray(arr[ix]))
-            {
+            if (Array.isArray(arr[ix])) {
                 var res = getRandom(rnd, arr[ix]);
                 if (arr[ix].length === 0)
                     arr.splice(ix, 1);
@@ -101,27 +98,24 @@
 
         var _defaultRules = null;
 
-        function ensureDefaultRules()
-        {
+        function ensureDefaultRules() {
             if (_defaultRules !== null)
                 return _defaultRules;
 
             _defaultRules = {};
             for (var i = 0; i < 15; i++)
-                _defaultRules[i] = document.getElementById(`step-${i+1}`).innerHTML;
+                _defaultRules[i] = document.getElementById(`step-${i + 1}`).innerHTML;
 
             return _defaultRules;
         }
 
-        function setDefaultRules()
-        {
+        function setDefaultRules() {
             ensureDefaultRules();
             for (var i = 0; i < 15; i++)
-                document.getElementById(`step-${i+1}`).innerHTML = _defaultRules[i];
+                document.getElementById(`step-${i + 1}`).innerHTML = _defaultRules[i];
         }
 
-        function setRules(rnd)
-        {
+        function setRules(rnd) {
             ensureDefaultRules();
 
             var conditions = deepCopy(_conditions);
@@ -135,78 +129,69 @@
             // *** START LEFT HALF (steps 1-3, 5-8)
 
             stepsTypes[1] = rnd.next(0, 2);
-            if (stepsTypes[1] === 0)
-            {
+            if (stepsTypes[1] === 0) {
                 // Boolean condition
                 stepsConds[1] = getRandom(rnd, conditions);
                 document.getElementById('step-1').innerHTML = `
-                    <li>If the light is off, выкрутите лампочку и перейдите к <strong>Шагу 4</strong>.</li>
-                    <li>If the light is on and ${stepsConds[1][0]}, нажмите на кнопку <strong>I</strong> и перейдите к <strong>Шагу 2</strong>.</li>
-                    <li>Иначе нажмите на кнопку <strong>O</strong> и перейдите к <strong>Шагу 3</strong>.</li>
-                `;
+                        <li>If the light is off, выкрутите лампочку и перейдите к <strong>Шагу 4</strong>.</li>
+                        <li>If the light is on and ${stepsConds[1][0]}, нажмите на кнопку <strong>I</strong> и перейдите к <strong>Шагу 2</strong>.</li>
+                        <li>Иначе нажмите на кнопку <strong>O</strong> и перейдите к <strong>Шагу 3</strong>.</li>
+                    `;
             }
-            else
-            {
+            else {
                 // Colors
                 stepsConds[1] = [null, 'colors'];
                 document.getElementById('step-1').innerHTML = `
-                    <li>If the light is off, выкрутите лампочку и перейдите к <strong>Шагу 4</strong>.</li>
-                    <li>If the light is on and the bulb is ${colors1[0]}, ${colors1[1]} or ${colors1[2]}, нажмите на кнопку <strong>I</strong> и перейдите к <strong>Шагу 2</strong>.</li>
-                    <li>Иначе, нажмите на кнопку <strong>O</strong> и перейдите к <strong>Шагу 3</strong>.</li>
-                `;
+                        <li>If the light is off, выкрутите лампочку и перейдите к <strong>Шагу 4</strong>.</li>
+                        <li>If the light is on and the bulb is ${colors1[0]}, ${colors1[1]} or ${colors1[2]}, нажмите на кнопку <strong>I</strong> и перейдите к <strong>Шагу 2</strong>.</li>
+                        <li>Иначе, нажмите на кнопку <strong>O</strong> и перейдите к <strong>Шагу 3</strong>.</li>
+                    `;
             }
 
             // Take a copy of the remaining conditions so that the right half can re-use them
             var rightConditions = deepCopy(conditions);
 
-            for (var step = 2; step <= 3; step++)
-            {
+            for (var step = 2; step <= 3; step++) {
                 stepsTypes[step] = stepsTypes[1] === 1 ? 2 : rnd.next(0, 2);
-                if (stepsTypes[step] === 0)
-                {
+                if (stepsTypes[step] === 0) {
                     // All colors
                     stepsConds[step] = [null, 'colors'];
                     document.getElementById(`step-${step}`).innerHTML = `
-                        <li>Если лампочка ${colors2_3[step-2][0]}, нажмите на кнопку <strong>I</strong>, выкрутите лампочку и перейдите к <strong>Шагу ${step === 2 ? 5 : 6}</strong>.</li>
-                        <li>Если лампочка ${colors2_3[step-2][1]}, нажмите на кнопку <strong>O</strong>, выкрутите лампочку и перейдите к <strong>Шагу ${step === 2 ? 6 : 5}</strong>.</li>
-                        <li>Иначе, выкрутите лампочку и перейдите к <strong>Шагу ${step === 2 ? 7 : 8}</strong>.</li>
-                    `;
+                            <li>Если лампочка ${colors2_3[step - 2][0]}, нажмите на кнопку <strong>I</strong>, выкрутите лампочку и перейдите к <strong>Шагу ${step === 2 ? 5 : 6}</strong>.</li>
+                            <li>Если лампочка ${colors2_3[step - 2][1]}, нажмите на кнопку <strong>O</strong>, выкрутите лампочку и перейдите к <strong>Шагу ${step === 2 ? 6 : 5}</strong>.</li>
+                            <li>Иначе, выкрутите лампочку и перейдите к <strong>Шагу ${step === 2 ? 7 : 8}</strong>.</li>
+                        `;
                 }
-                else if (stepsTypes[step] === 1)
-                {
+                else if (stepsTypes[step] === 1) {
                     // 4 colors + a boolean
                     stepsConds[step] = getRandom(rnd, conditions, 'now');
                     document.getElementById(`step-${step}`).innerHTML = `
-                        <li>Если лампочка ${colors2_3[step-2][2]}, ${colors2_3[step-2][3]}, ${colors2_3[step-2][4]} or ${colors2_3[step-2][5]}, выкрутите лампочку и перейдите к <strong>Шагу ${step === 2 ? 7 : 8}</strong>.</li>
-                        <li>If ${stepsConds[step][0]}, нажмите на кнопку <strong>I</strong>, выкрутите лампочку и перейдите к <strong>Шагу ${step === 2 ? 6 : 5}</strong>.</li>
-                        <li>Иначе, нажмите на кнопку <strong>O</strong>, выкрутите лампочку и перейдите к <strong>Шагу ${step === 2 ? 5 : 6}</strong>.</li>
-                    `;
+                            <li>Если лампочка ${colors2_3[step - 2][2]}, ${colors2_3[step - 2][3]}, ${colors2_3[step - 2][4]} or ${colors2_3[step - 2][5]}, выкрутите лампочку и перейдите к <strong>Шагу ${step === 2 ? 7 : 8}</strong>.</li>
+                            <li>If ${stepsConds[step][0]}, нажмите на кнопку <strong>I</strong>, выкрутите лампочку и перейдите к <strong>Шагу ${step === 2 ? 6 : 5}</strong>.</li>
+                            <li>Иначе, нажмите на кнопку <strong>O</strong>, выкрутите лампочку и перейдите к <strong>Шагу ${step === 2 ? 5 : 6}</strong>.</li>
+                        `;
                 }
-                else if (stepsTypes[step] === 2)
-                {
+                else if (stepsTypes[step] === 2) {
                     // 2 colors + a boolean
                     stepsConds[step] = getRandom(rnd, conditions, 'now');
                     document.getElementById(`step-${step}`).innerHTML = `
-                        <li>Если лампочка ${colors1[step*3 - 5]} or ${colors1[step*3 - 4]}, выкрутите лампочку и перейдите к <strong>Шагу ${step === 2 ? 7 : 8}</strong>.</li>
-                        <li>If ${stepsConds[step][0]}, нажмите на кнопку <strong>I</strong>, выкрутите лампочку и перейдите к <strong>Шагу ${step === 2 ? 6 : 5}</strong>.</li>
-                        <li>Иначе, нажмите на кнопку <strong>O</strong>, выкрутите лампочку и перейдите к <strong>Шагу ${step === 2 ? 5 : 6}</strong>.</li>
-                    `;
+                            <li>Если лампочка ${colors1[step * 3 - 5]} or ${colors1[step * 3 - 4]}, выкрутите лампочку и перейдите к <strong>Шагу ${step === 2 ? 7 : 8}</strong>.</li>
+                            <li>If ${stepsConds[step][0]}, нажмите на кнопку <strong>I</strong>, выкрутите лампочку и перейдите к <strong>Шагу ${step === 2 ? 6 : 5}</strong>.</li>
+                            <li>Иначе, нажмите на кнопку <strong>O</strong>, выкрутите лампочку и перейдите к <strong>Шагу ${step === 2 ? 5 : 6}</strong>.</li>
+                        `;
                 }
             }
 
-            for (var step = 5; step <= 6; step++)
-            {
+            for (var step = 5; step <= 6; step++) {
                 var condStr;
                 // Check if steps 5 & 6 can use the bulb color, and if so, use it with 90% likelihood
-                if (stepsTypes[2] === 1 && stepsTypes[3] === 1 && rnd.next(0, 10) != 0)
-                {
+                if (stepsTypes[2] === 1 && stepsTypes[3] === 1 && rnd.next(0, 10) != 0) {
                     var c21 = colors2_3[0][0];
                     var c22 = colors2_3[0][1];
                     var c31 = colors2_3[1][0];
                     var c32 = colors2_3[1][1];
 
-                    if (c21 === c32 || c22 === c31)
-                    {
+                    if (c21 === c32 || c22 === c31) {
                         var t = c31;
                         c31 = c32;
                         c32 = t;
@@ -216,143 +201,131 @@
                     var c2 = c22 === c32 ? c22 : `${c22} or ${c32}`;
                     condStr = `the bulb is ${step === 5 ? c1 : c2}`;
                 }
-                else
-                {
+                else {
                     stepsConds[step] = getRandom(rnd, conditions, (stepsConds[2][1] !== 'now' && stepsConds[3][1] !== 'now') ? 'step1' : false);
                     condStr = stepsConds[step][0];
                 }
                 document.getElementById(`step-${step}`).innerHTML = `
-                    <li>If ${condStr}, нажмите на кнопку <strong>I</strong>, , и закрутите лампочку.</li>
-                    <li>Иначе, нажмите на кнопку <strong>O</strong>, , и закрутите лампочку.</li>
-                `;
+                        <li>If ${condStr}, нажмите на кнопку <strong>I</strong>, , и закрутите лампочку.</li>
+                        <li>Иначе, нажмите на кнопку <strong>O</strong>, , и закрутите лампочку.</li>
+                    `;
             }
 
-            for (var step = 7; step <= 8; step++)
-            {
+            for (var step = 7; step <= 8; step++) {
                 var cond1 = getRandom(rnd, conditions)[0];
                 var cond2 = getRandom(rnd, conditions)[0];
-                if (stepsTypes[step-5] !== 2)
-                {
+                if (stepsTypes[step - 5] !== 2) {
                     // Must use up all four of the remaining colors
                     stepsTypes[step] = 2;
                     document.getElementById(`step-${step}`).innerHTML = `
-                        <li>Если лампочка ${colors2_3[step-7][2]}, нажмите на кнопку <strong>I</strong>, запомните индикатор whether ${cond1} и перейдите к <strong>Шагу 11</strong>.</li>
-                        <li>Если лампочка ${colors2_3[step-7][3]}, нажмите на кнопку <strong>I</strong>, закрутите лампочку и перейдите к <strong>Шагу 12</strong>.</li>
-                        <li>Если лампочка ${colors2_3[step-7][4]}, нажмите на кнопку <strong>O</strong>, запомните индикатор whether ${cond2} и перейдите к <strong>Шагу 11</strong>.</li>
-                        <li>Иначе, нажмите на кнопку <strong>O</strong>, закрутите лампочку и перейдите к <strong>Шагу 13</strong>.</li>
-                    `;
+                            <li>Если лампочка ${colors2_3[step - 7][2]}, нажмите на кнопку <strong>I</strong>, запомните индикатор whether ${cond1} и перейдите к <strong>Шагу 11</strong>.</li>
+                            <li>Если лампочка ${colors2_3[step - 7][3]}, нажмите на кнопку <strong>I</strong>, закрутите лампочку и перейдите к <strong>Шагу 12</strong>.</li>
+                            <li>Если лампочка ${colors2_3[step - 7][4]}, нажмите на кнопку <strong>O</strong>, запомните индикатор whether ${cond2} и перейдите к <strong>Шагу 11</strong>.</li>
+                            <li>Иначе, нажмите на кнопку <strong>O</strong>, закрутите лампочку и перейдите к <strong>Шагу 13</strong>.</li>
+                        `;
                 }
-                else
-                {
+                else {
                     stepsTypes[step] = rnd.next(0, 2);
                     var b2 = getRandom(rnd, conditions)[0], b1;
-                    if (stepsTypes[step] === 0)
-                    {
+                    if (stepsTypes[step] === 0) {
                         // Two colors and a boolean
-                        b1 = `the bulb is ${colors1[step*3 - 20]}`;
+                        b1 = `the bulb is ${colors1[step * 3 - 20]}`;
                     }
-                    else
-                    {
+                    else {
                         // Two booleans
                         b1 = getRandom(rnd, conditions)[0];
                     }
                     document.getElementById(`step-${step}`).innerHTML = `
-                        <li>If ${b1}:
-                            <ul>
-                                <li>If ${b2}, нажмите на кнопку <strong>I</strong>, запомните индикатор whether ${cond1} и перейдите к <strong>Шагу 11</strong>.</li>
-                                <li>Иначе, нажмите на кнопку <strong>I</strong>, закрутите лампочку и перейдите к <strong>Шагу 12</strong>.</li>
-                            </ul>
-                        </li>
-                        <li>Otherwise:
-                            <ul>
-                                <li>If ${b2}, нажмите на кнопку <strong>O</strong>, запомните индикатор whether ${cond2} и перейдите к <strong>Шагу 11</strong>.</li>
-                                <li>Иначе, нажмите на кнопку <strong>O</strong>, закрутите лампочку и перейдите к <strong>Шагу 13</strong>.</li>
-                            </ul>
-                        </li>
-                    `;
+                            <li>If ${b1}:
+                                <ul>
+                                    <li>If ${b2}, нажмите на кнопку <strong>I</strong>, запомните индикатор whether ${cond1} и перейдите к <strong>Шагу 11</strong>.</li>
+                                    <li>Иначе, нажмите на кнопку <strong>I</strong>, закрутите лампочку и перейдите к <strong>Шагу 12</strong>.</li>
+                                </ul>
+                            </li>
+                            <li>Otherwise:
+                                <ul>
+                                    <li>If ${b2}, нажмите на кнопку <strong>O</strong>, запомните индикатор whether ${cond2} и перейдите к <strong>Шагу 11</strong>.</li>
+                                    <li>Иначе, нажмите на кнопку <strong>O</strong>, закрутите лампочку и перейдите к <strong>Шагу 13</strong>.</li>
+                                </ul>
+                            </li>
+                        `;
                 }
             }
 
             // Step 11 is always the same; it relies on a condition “запомните индикаторed” by a previous step
             document.getElementById(`step-11`).innerHTML = `
-                <li>If the запомните индикаторed rule is true, нажмите на кнопку <strong>I</strong>, , и закрутите лампочку.</li>
-                <li>Иначе, нажмите на кнопку <strong>O</strong>, , и закрутите лампочку.</li>
-            `;
+                    <li>If the запомните индикаторed rule is true, нажмите на кнопку <strong>I</strong>, , и закрутите лампочку.</li>
+                    <li>Иначе, нажмите на кнопку <strong>O</strong>, , и закрутите лампочку.</li>
+                `;
 
             // *** START RIGHT HALF (steps 4, 9-10)
             stepsTypes[4] = rnd.next(0, 2);
-            if (stepsTypes[4] === 0)
-            {
+            if (stepsTypes[4] === 0) {
                 // Step 4 is a boolean, steps 9 and 10 use the colors
                 var colors9_10 = [rnd.shuffleFisherYates(deepCopy(_colors)), rnd.shuffleFisherYates(deepCopy(_colors))];
                 stepsConds[4] = getRandom(rnd, rightConditions);
                 document.getElementById(`step-4`).innerHTML = `
-                    <li>If ${stepsConds[4][0]}, нажмите на кнопку <strong>I</strong> и перейдите к <strong>Шагу 9</strong>.</li>
-                    <li>Иначе, нажмите на кнопку <strong>O</strong> и перейдите к <strong>Шагу 10</strong>.</li>
-                `;
-
-                for (var step = 9; step <= 10; step++)
-                {
-                    document.getElementById(`step-${step}`).innerHTML = `
-                        <li>Если лампочка ${colors9_10[step-9][0]}, нажмите на кнопку <strong>I</strong> и перейдите к <strong>Шагу 14</strong>.</li>
-                        <li>Если лампочка ${colors9_10[step-9][1]}, нажмите на кнопку <strong>I</strong>, закрутите лампочку и перейдите к <strong>Шагу 12</strong>.</li>
-                        <li>Если лампочка ${colors9_10[step-9][2]}, нажмите на кнопку <strong>O</strong> и перейдите к <strong>Шагу 15</strong>.</li>
-                        <li>Если лампочка ${colors9_10[step-9][3]}, нажмите на кнопку <strong>O</strong>, закрутите лампочку и перейдите к <strong>Шагу 13</strong>.</li>
-                        <li>Если лампочка ${colors9_10[step-9][4]}, закрутите лампочку, нажмите на кнопку <strong>I</strong> и перейдите к <strong>Шагу 12</strong>.</li>
-                        <li>Иначе, закрутите лампочку, нажмите на кнопку <strong>O</strong> и перейдите к <strong>Шагу 13</strong>.</li>
+                        <li>If ${stepsConds[4][0]}, нажмите на кнопку <strong>I</strong> и перейдите к <strong>Шагу 9</strong>.</li>
+                        <li>Иначе, нажмите на кнопку <strong>O</strong> и перейдите к <strong>Шагу 10</strong>.</li>
                     `;
+
+                for (var step = 9; step <= 10; step++) {
+                    document.getElementById(`step-${step}`).innerHTML = `
+                            <li>Если лампочка ${colors9_10[step - 9][0]}, нажмите на кнопку <strong>I</strong> и перейдите к <strong>Шагу 14</strong>.</li>
+                            <li>Если лампочка ${colors9_10[step - 9][1]}, нажмите на кнопку <strong>I</strong>, закрутите лампочку и перейдите к <strong>Шагу 12</strong>.</li>
+                            <li>Если лампочка ${colors9_10[step - 9][2]}, нажмите на кнопку <strong>O</strong> и перейдите к <strong>Шагу 15</strong>.</li>
+                            <li>Если лампочка ${colors9_10[step - 9][3]}, нажмите на кнопку <strong>O</strong>, закрутите лампочку и перейдите к <strong>Шагу 13</strong>.</li>
+                            <li>Если лампочка ${colors9_10[step - 9][4]}, закрутите лампочку, нажмите на кнопку <strong>I</strong> и перейдите к <strong>Шагу 12</strong>.</li>
+                            <li>Иначе, закрутите лампочку, нажмите на кнопку <strong>O</strong> и перейдите к <strong>Шагу 13</strong>.</li>
+                        `;
                 }
             }
-            else
-            {
+            else {
                 // Step 4 uses colors and 9/10 are colors combined with a boolean
                 var colors4 = rnd.shuffleFisherYates(deepCopy(_colors));
                 document.getElementById(`step-4`).innerHTML = `
-                    <li>Если лампочка ${colors4[0]}, ${colors4[1]} or ${colors4[2]}, нажмите на кнопку <strong>I</strong> и перейдите к <strong>Шагу 9</strong>.</li>
-                    <li>Иначе, нажмите на кнопку <strong>O</strong> и перейдите к <strong>Шагу 10</strong>.</li>
-                `;
+                        <li>Если лампочка ${colors4[0]}, ${colors4[1]} or ${colors4[2]}, нажмите на кнопку <strong>I</strong> и перейдите к <strong>Шагу 9</strong>.</li>
+                        <li>Иначе, нажмите на кнопку <strong>O</strong> и перейдите к <strong>Шагу 10</strong>.</li>
+                    `;
 
-                for (var step = 9; step <= 10; step++)
-                {
+                for (var step = 9; step <= 10; step++) {
                     stepsConds[step] = getRandom(rnd, rightConditions);
                     document.getElementById(`step-${step}`).innerHTML = `
-                        <li>If ${stepsConds[step][0]}:
-                            <ul>
-                                <li>Если лампочка ${colors4[step*3 - 27]}, нажмите на кнопку <strong>I</strong> и перейдите к <strong>Шагу 14</strong>.</li>
-                                <li>Если лампочка ${colors4[step*3 - 27 + 1]}, нажмите на кнопку <strong>I</strong>, закрутите лампочку и перейдите к <strong>Шагу ${step + 3}</strong>.</li>
-                                <li>Иначе, нажмите на кнопку <strong>O</strong> и перейдите к <strong>Шагу 15</strong>.</li>
-                            </ul>
-                        </li>
-                        <li>Otherwise:
-                            <ul>
-                                <li>Если лампочка ${colors4[step*3 - 27]}, нажмите на кнопку <strong>O</strong>, закрутите лампочку и перейдите к <strong>Шагу ${step === 9 ? 13 : 12}</strong>.</li>
-                                <li>Если лампочка ${colors4[step*3 - 27 + 1]}, закрутите лампочку, нажмите на кнопку <strong>I</strong> и перейдите к <strong>Шагу ${step === 9 ? 12 : 13}</strong>.</li>
-                                <li>Иначе, закрутите лампочку, нажмите на кнопку <strong>O</strong> и перейдите к <strong>Шагу ${step === 9 ? 13 : 12}</strong>.</li>
-                            </ul>
-                        </li>
-                    `;
+                            <li>If ${stepsConds[step][0]}:
+                                <ul>
+                                    <li>Если лампочка ${colors4[step * 3 - 27]}, нажмите на кнопку <strong>I</strong> и перейдите к <strong>Шагу 14</strong>.</li>
+                                    <li>Если лампочка ${colors4[step * 3 - 27 + 1]}, нажмите на кнопку <strong>I</strong>, закрутите лампочку и перейдите к <strong>Шагу ${step + 3}</strong>.</li>
+                                    <li>Иначе, нажмите на кнопку <strong>O</strong> и перейдите к <strong>Шагу 15</strong>.</li>
+                                </ul>
+                            </li>
+                            <li>Otherwise:
+                                <ul>
+                                    <li>Если лампочка ${colors4[step * 3 - 27]}, нажмите на кнопку <strong>O</strong>, закрутите лампочку и перейдите к <strong>Шагу ${step === 9 ? 13 : 12}</strong>.</li>
+                                    <li>Если лампочка ${colors4[step * 3 - 27 + 1]}, закрутите лампочку, нажмите на кнопку <strong>I</strong> и перейдите к <strong>Шагу ${step === 9 ? 12 : 13}</strong>.</li>
+                                    <li>Иначе, закрутите лампочку, нажмите на кнопку <strong>O</strong> и перейдите к <strong>Шагу ${step === 9 ? 13 : 12}</strong>.</li>
+                                </ul>
+                            </li>
+                        `;
                 }
             }
 
             stepsConds[14] = getRandom(rnd, rightConditions);
-            for (var step = 14; step <= 15; step++)
-            {
+            for (var step = 14; step <= 15; step++) {
                 document.getElementById(`step-${step}`).innerHTML = `
-                    <li>If ${stepsConds[14][0]}, нажмите на кнопку <strong>${step === 14 ? 'I' : 'O'}</strong>, , и закрутите лампочку.</li>
-                    <li>Иначе, нажмите на кнопку <strong>${step === 14 ? 'O' : 'I'}</strong>, , и закрутите лампочку.</li>
-                `;
+                        <li>If ${stepsConds[14][0]}, нажмите на кнопку <strong>${step === 14 ? 'I' : 'O'}</strong>, , и закрутите лампочку.</li>
+                        <li>Иначе, нажмите на кнопку <strong>${step === 14 ? 'O' : 'I'}</strong>, , и закрутите лампочку.</li>
+                    `;
             }
 
             // Steps 12 and 13 are the only ones shared by both left and right halves.
             // Not a big deal if this one rarely re-uses a condition already used by the right half.
             // Also, they can safely use the current lit state regardless of earlier stages.
             stepsConds[12] = getRandom(rnd, conditions, 'now');
-            for (var step = 12; step <= 13; step++)
-            {
+            for (var step = 12; step <= 13; step++) {
                 document.getElementById(`step-${step}`).innerHTML = `
-                    <li>If ${stepsConds[12][0]}, нажмите на кнопку <strong>${step === 12 ? 'I' : 'O'}</strong>.</li>
-                    <li>Иначе, нажмите на кнопку <strong>${step === 12 ? 'O' : 'I'}</strong>.</li>
-                `;
+                        <li>If ${stepsConds[12][0]}, нажмите на кнопку <strong>${step === 12 ? 'I' : 'O'}</strong>.</li>
+                        <li>Иначе, нажмите на кнопку <strong>${step === 12 ? 'O' : 'I'}</strong>.</li>
+                    `;
             }
         }
 
@@ -375,7 +348,8 @@
                     Данный модуль содержит кнопки <strong>I</strong> и <strong>O</strong> и цветную лампочку, которая может быть либо полупрозрачной, либо светонепроницаемой, и окрашена в один из шести цветов: синий, зелёный, фиолетовый, красный, белый или жёлтый.
                 </p>
                 <p>
-                    Если вы ошиблись, нажав  на неправильную кнопку, проигнорируйте её и продолжайте дальше. Если же вы ошиблись, потому что выкрутили/вкрутили лампочку невовремя, <em>переделайте</em> последнее действие перед тем, как продолжать дальше.</p>
+                    Если вы ошиблись, нажав  на неправильную кнопку, проигнорируйте её и продолжайте дальше. Если же вы ошиблись, потому что выкрутили/вкрутили лампочку невовремя, <em>переделайте</em> последнее действие перед тем, как продолжать дальше.
+                </p>
                 <p>Начинайте с <em>Шага 1</em>.</p>
                 <p>
                     Если лампочка закручена, долгое удержание любой из кнопок сбросит модуль обратно к Шагу 1. То же действие при выкрученной лампочке вызовет ошибку.

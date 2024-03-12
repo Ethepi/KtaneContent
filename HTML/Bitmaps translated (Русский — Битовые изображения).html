@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1">
@@ -14,8 +14,7 @@
         var defaultRules = null;
         var defaultStartingRule = null;
 
-        function ensureDefaultsKnown()
-        {
+        function ensureDefaultsKnown() {
             if (defaultRules !== null)
                 return;
 
@@ -26,8 +25,7 @@
             defaultStartingRule = document.getElementById('start-rule').innerText;
         }
 
-        function setDefaultRules()
-        {
+        function setDefaultRules() {
             ensureDefaultsKnown();
             var list = document.getElementsByClassName('rule');
             for (var i = 0; i < list.length; i++)
@@ -35,8 +33,7 @@
             document.getElementById('start-rule').innerText = defaultStartingRule;
         }
 
-        function setRules(rnd)
-        {
+        function setRules(rnd) {
             ensureDefaultsKnown();
 
             // Add extra randomness
@@ -212,20 +209,17 @@
             };
 
             var list = document.getElementsByClassName('rule');
-            for (var i = 0; i < conditions.length; i++)
-            {
+            for (var i = 0; i < conditions.length; i++) {
                 var numSol = solutions.length;
                 if (conditions[i].extra in extraSolutions)
                     numSol += extraSolutions[conditions[i].extra].length;
                 var ix = rnd.next(0, numSol);
                 var solution;
-                if (ix < solutions.length)
-                {
+                if (ix < solutions.length) {
                     solution = solutions[ix];
                     solutions.splice(ix, 1);
                 }
-                else
-                {
+                else {
                     ix -= solutions.length;
                     solution = extraSolutions[conditions[i].extra][ix];
                     extraSolutions[conditions[i].extra].splice(ix, 1);
@@ -251,7 +245,8 @@
     </style>
 </head>
 <body>
-    <div class="section"><div class="ruleseed-header"></div>
+    <div class="section">
+        <div class="ruleseed-header"></div>
         <div class="page page-bg-04">
             <div class="page-header">
                 <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
@@ -269,20 +264,24 @@
                     <li>Подсчитайте ответ для применимого правила. Прибавляйте или вычитайте 4, пока ваш ответ не будет в пределах 1–4, и нажмите на соответствующую кнопку для деактивации модуля.</li>
                 </ul>
                 <table>
-                    <tbody><tr><th>#</th><th>Правило</th></tr>
-                    <tr><th>0</th><td class="rule">Если только в одном квадранте количество белых пикселей равно 5 и меньше, ответом является количество белых пикселей в остальных 3 квадрантах.</td></tr>
-                    <tr><th>1</th><td class="rule">Если квадрантов с большинством белых пикселей равно количеству горящих индикаторов, ответом является количество элементов питания на бомбе.</td></tr>
-                    <tr><th>2</th><td class="rule">Если только один столбец/ряд полностью чёрный/белый, ответом является его абсцисса/ордината (начало в левом верхнем углу).</td></tr>
-                    <tr><th>3</th><td class="rule">Если квадрантов с большинством белых пикселей меньше квадрантов с большинством чёрных пикселей, ответ — это число квадрантов с большинством чёрных пикселей.</td></tr>
-                    <tr><th>4</th><td class="rule">Если во всем изображении количество белых пикселей равно 36 и больше, ответом является число всех белых пикселей.</td></tr>
-                    <tr><th>5</th><td class="rule">Если квадрантов с большинством белых пикселей больше квадрантов с большинством чёрных пикселей, ответ — наименьшее число чёрных пикселей в одном из квадрантов.</td></tr>
-                    <tr><th>6</th><td class="rule">Если только в одном квадранте 5 и меньше чёрных пикселей, ответом является число чёрных пикселей в остальных 3 квадрантах.</td></tr>
-                    <tr><th>7</th><td class="rule">Если количество квадрантов с большинством чёрных пикселей равно количеству негорящих индикаторов, ответом является количество портов.</td></tr>
-                    <tr><th>8</th><td class="rule">Если присутствует полностью чёрный/белый квадрат 3×3, ответом является абсцисса его центрального пикселя (начиная с 1).</td></tr>
-                    <tr><th>9</th><td class="rule">Если квадрантов с большинством белых пикселей равно числу квадрантов с большинством чёрных пикселей, ответ — это первая цифра серийного номера.</td></tr>
-                </tbody></table>
+                    <tbody>
+                        <tr><th>#</th><th>Правило</th></tr>
+                        <tr><th>0</th><td class="rule">Если только в одном квадранте количество белых пикселей равно 5 и меньше, ответом является количество белых пикселей в остальных 3 квадрантах.</td></tr>
+                        <tr><th>1</th><td class="rule">Если квадрантов с большинством белых пикселей равно количеству горящих индикаторов, ответом является количество элементов питания на бомбе.</td></tr>
+                        <tr><th>2</th><td class="rule">Если только один столбец/ряд полностью чёрный/белый, ответом является его абсцисса/ордината (начало в левом верхнем углу).</td></tr>
+                        <tr><th>3</th><td class="rule">Если квадрантов с большинством белых пикселей меньше квадрантов с большинством чёрных пикселей, ответ — это число квадрантов с большинством чёрных пикселей.</td></tr>
+                        <tr><th>4</th><td class="rule">Если во всем изображении количество белых пикселей равно 36 и больше, ответом является число всех белых пикселей.</td></tr>
+                        <tr><th>5</th><td class="rule">Если квадрантов с большинством белых пикселей больше квадрантов с большинством чёрных пикселей, ответ — наименьшее число чёрных пикселей в одном из квадрантов.</td></tr>
+                        <tr><th>6</th><td class="rule">Если только в одном квадранте 5 и меньше чёрных пикселей, ответом является число чёрных пикселей в остальных 3 квадрантах.</td></tr>
+                        <tr><th>7</th><td class="rule">Если количество квадрантов с большинством чёрных пикселей равно количеству негорящих индикаторов, ответом является количество портов.</td></tr>
+                        <tr><th>8</th><td class="rule">Если присутствует полностью чёрный/белый квадрат 3×3, ответом является абсцисса его центрального пикселя (начиная с 1).</td></tr>
+                        <tr><th>9</th><td class="rule">Если квадрантов с большинством белых пикселей равно числу квадрантов с большинством чёрных пикселей, ответ — это первая цифра серийного номера.</td></tr>
+                    </tbody>
+                </table>
             </div>
             <div class="page-footer relative-footer">Стр. 1 из 1</div>
         </div>
-    <div class="ruleseed-header"></div></div>
-</body></html>
+        <div class="ruleseed-header"></div>
+    </div>
+</body>
+</html>

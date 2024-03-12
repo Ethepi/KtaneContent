@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1">
@@ -15,16 +15,27 @@
             font-family: 'KRA';
             font-size: 250%;
         }
-        .dark table, table { border: none; }
+
+        .dark table, table {
+            border: none;
+        }
+
         h3, ul {
             margin: .3em 0;
         }
-        th, td { padding: .2em .6em 0; }
-        th { text-align: center; }
+
+        th, td {
+            padding: .2em .6em 0;
+        }
+
+        th {
+            text-align: center;
+        }
 
         .condition-table {
             margin-bottom: 1em;
         }
+
         .cube-net .light {
             position: absolute;
             font-size: 12pt;
@@ -163,37 +174,39 @@
                 <h3>Коды Проводов (WC)</h3>
                 <ul>
                     <li>Счёт проводов ведётся сверху вниз.</li>
-                    <li>Вычислите коды проводов при помощи таблицы приведённой ниже. Во всех случаях, используйте только последнюю цифру ответа.
-                    <table class='condition-table'>
-                        <tr>
-                            <th>Цвет</th>
-                            <th>Код Провода</th>
-                        </tr>
-                        <tr>
-                            <td>Синий</td>
-                            <td>Позиция провода + 5</td>
-                        </tr>
-                        <tr>
-                            <td>Зелёный</td>
-                            <td>Кол-во синих кнопок + 7</td>
-                        </tr>
-                        <tr>
-                            <td>Оранжевый</td>
-                            <td>Кол-во зелёных кнопок + 3</td>
-                        </tr>
-                        <tr>
-                            <td>Фиолетовый</td>
-                            <td>Сумма цифр на кубе</td>
-                        </tr>
-                        <tr>
-                            <td>Красный</td>
-                            <td>Кол-во модулей на бомбе + 7</td>
-                        </tr>
-                        <tr>
-                            <td>Белый/Серый</td>
-                            <td>6</td>
-                        </tr>
-                    </table></li>
+                    <li>
+                        Вычислите коды проводов при помощи таблицы приведённой ниже. Во всех случаях, используйте только последнюю цифру ответа.
+                        <table class='condition-table'>
+                            <tr>
+                                <th>Цвет</th>
+                                <th>Код Провода</th>
+                            </tr>
+                            <tr>
+                                <td>Синий</td>
+                                <td>Позиция провода + 5</td>
+                            </tr>
+                            <tr>
+                                <td>Зелёный</td>
+                                <td>Кол-во синих кнопок + 7</td>
+                            </tr>
+                            <tr>
+                                <td>Оранжевый</td>
+                                <td>Кол-во зелёных кнопок + 3</td>
+                            </tr>
+                            <tr>
+                                <td>Фиолетовый</td>
+                                <td>Сумма цифр на кубе</td>
+                            </tr>
+                            <tr>
+                                <td>Красный</td>
+                                <td>Кол-во модулей на бомбе + 7</td>
+                            </tr>
+                            <tr>
+                                <td>Белый/Серый</td>
+                                <td>6</td>
+                            </tr>
+                        </table>
+                    </li>
                 </ul>
 
                 <h3>Шифр №2 и Шифр №3</h3>
